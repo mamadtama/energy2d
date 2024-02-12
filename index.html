@@ -44,11 +44,11 @@
     //var map = L.map('map', {maxZoom: 20, minZoom: 6, zoomControl: false});
     var map = L.map('map', {maxZoom: 20, zoomControl: false}).setView([35.1391,128.9178], 14);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,{opacity: 0.75},
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var GriStyle = {fillColor: '#FFFFFF',"color": "#000000",fillOpacity:0.1,"weight": 3,"opacity": 0.9};
+    var GriStyle = {fillColor: '#FFFFFF',"color": "#000000",fillOpacity:0.1,"weight": 1,"opacity": 0.9};
     var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var FacStyle = {fillColor: '#AC6F5A',"color": "#AC6F5A",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var GovStyle = {fillColor: '#0058AC',"color": "#0058AC",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
@@ -73,39 +73,34 @@
     // Define Base Maps
     // MAP BOX STREET
     var baseMapStreet = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        id: 'mapbox.streets',
+        maxZoom: 18,{opacity: 0.75},id: 'mapbox.streets',
     });
 
     //MAP BOX outdoor
     var baseMapOutdoor = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
-        maxZoom: 18,
+        maxZoom: 18,{opacity: 0.75},
         id: 'mapbox.outdoors',
         accessToken: 'pk.eyJ1IjoiaGl0YWRldmVsb3BlciIsImEiOiJjam40N3ljbjQwMXFoM3FtaWFhdmE0ZHU4In0.-k3XXQjWfjWM5fgL-e25sA'
     });
 
     //google maps
     var baseMapGoogleStreet = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        maxZoom: 20, {opacity: 0.75},subdomains:['mt0','mt1','mt2','mt3']
     });
 
     //google maps hybrid
     var baseMapGoogleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        maxZoom: 20,{opacity: 0.75},subdomains:['mt0','mt1','mt2','mt3']
     });
 
     //google map satelite
     var baseMapGoogleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        maxZoom: 20,{opacity: 0.75},subdomains:['mt0','mt1','mt2','mt3']
     });
 
     //google map terrain
     var baseMapGoogleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        maxZoom: 20,{opacity: 0.75},subdomains:['mt0','mt1','mt2','mt3']
     });
 
 
