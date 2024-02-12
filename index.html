@@ -118,15 +118,15 @@
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle, onEachFeature: function (feature, layer) {
         layer.on('mouseover', function () {
           this.setStyle({
-            'fillColor': '#0000ff'
+            'fillColor': '#0000ff', 
           });
         });
-        /*
+        
         layer.on('mouseout', function () {
           this.setStyle({
-            'fillColor': '#ff0000'
+            fillColor: '#FFFFFF',"color": "#000000",fillOpacity:0.1,"weight": 1,"opacity": 0.9
           });
-        }); */
+        }); 
         layer.on('click', function () {
           // Let's say you've got a property called url in your geojsonfeature:
           window.location = feature.properties.url;
