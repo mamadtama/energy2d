@@ -49,11 +49,11 @@
     }).addTo(map);
 
     var GriStyle = {"color": "#04B8B8","weight": 0,"opacity": 0.1};
-    var HouStyle = {"color": "#AD9B58","weight": 0,"opacity": 0.7};
-    var FacStyle = {"color": "#AC6F5A","weight": 0,"opacity": 0.7};
-    var GovStyle = {"color": "#0058AC","weight": 0,"opacity": 0.7};
-    var ComStyle = {"color": "#6C61A6","weight": 0,"opacity": 0.7};
-    var ParStyle = {"color": "#018120","weight": 0,"opacity": 0.7};
+    var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58","weight": 0,"opacity": 0.7};
+    var FacStyle = {fillColor: '#AC6F5A',"color": "#AC6F5A","weight": 0,"opacity": 0.7};
+    var GovStyle = {fillColor: '#0058AC',"color": "#0058AC","weight": 0,"opacity": 0.7};
+    var ComStyle = {fillColor: '#6C61A6',"color": "#6C61A6","weight": 0,"opacity": 0.7};
+    var ParStyle = {fillColor: '#018120',"color": "#018120","weight": 0,"opacity": 0.7};
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
