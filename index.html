@@ -48,12 +48,12 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var GriStyle = {fillColor: '#FFFFFF',"color": "#04B8B8","weight": 0,"opacity": 0.1};
-    var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58","weight": 0,"opacity": 0.9};
-    var FacStyle = {fillColor: '#AC6F5A',"color": "#AC6F5A","weight": 0,"opacity": 0.9};
-    var GovStyle = {fillColor: '#0058AC',"color": "#0058AC","weight": 0,"opacity": 0.9};
-    var ComStyle = {fillColor: '#6C61A6',"color": "#6C61A6","weight": 0,"opacity": 0.9};
-    var ParStyle = {fillColor: '#018120',"color": "#018120","weight": 0,"opacity": 0.9};
+    var GriStyle = {fillColor: '#FFFFFF',"color": "#04B8B8",fillOpacity:0.1,"weight": 0,"opacity": 1};
+    var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58",fillOpacity:0.7,"weight": 0,"opacity": 0.9};
+    var FacStyle = {fillColor: '#AC6F5A',"color": "#AC6F5A",fillOpacity:0.7,"weight": 0,"opacity": 0.9};
+    var GovStyle = {fillColor: '#0058AC',"color": "#0058AC",fillOpacity:0.7,"weight": 0,"opacity": 0.9};
+    var ComStyle = {fillColor: '#6C61A6',"color": "#6C61A6",fillOpacity:0.7,"weight": 0,"opacity": 0.9};
+    var ParStyle = {fillColor: '#018120',"color": "#018120",fillOpacity:0.7,"weight": 0,"opacity": 0.9};
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
