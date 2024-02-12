@@ -48,7 +48,7 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var geojsonLayer = new L.GeoJSON.AJAX('./data/grid200m_box.geojson');       
+    var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson');       
     geojsonLayer.addTo(map);
 
     L.control.scale({
@@ -108,6 +108,7 @@
 
 
     L.control.layers(baseMapsControl).addTo(map);
+    L.control.layers(grid200m).addTo(map);
 
 
     //var legend = L.control({position: 'bottomleft'});
