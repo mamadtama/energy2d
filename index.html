@@ -142,7 +142,7 @@
     "Google Terain" : baseMapGoogleTerrain,
     };
 
-    L.control.layers(baseMapsControl,grid).addTo(map);
+    L.control.layers(baseMapsControl).addTo(map);
     L.control.addOverlay(grid, "Grid 200 m");
     L.control.addOverlay(House2, "House");
     L.control.addOverlay(Factory2, "Factory");
