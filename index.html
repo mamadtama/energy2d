@@ -48,12 +48,12 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var GriStyle = {"color": "#04B8B8","weight": 5,"opacity": 0.1};
-    var HouStyle = {"color": "#AD9B58","weight": 5,"opacity": 1};
-    var FacStyle = {"color": "#AC6F5A","weight": 5,"opacity": 1};
-    var GovStyle = {"color": "#0058AC","weight": 5,"opacity": 1};
-    var ComStyle = {"color": "#6C61A6","weight": 5,"opacity": 1};
-    var ParStyle = {"color": "#018120","weight": 5,"opacity": 1};
+    var GriStyle = {"color": "#04B8B8","weight": 1,"opacity": 0.1};
+    var HouStyle = {"color": "#AD9B58","weight": 0,"opacity": 1};
+    var FacStyle = {"color": "#AC6F5A","weight": 0,"opacity": 1};
+    var GovStyle = {"color": "#0058AC","weight": 0,"opacity": 1};
+    var ComStyle = {"color": "#6C61A6","weight": 0,"opacity": 1};
+    var ParStyle = {"color": "#018120","weight": 0,"opacity": 1};
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
