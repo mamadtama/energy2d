@@ -50,10 +50,42 @@
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson');       
     var grid2 = grid200m.addTo(map);
-
     var grid = {
         "Grid 200m": grid2
     };
+
+    var House = new L.GeoJSON.AJAX('./data/House.geojson');       
+    var House2 = House.addTo(map);
+    var House3 = {
+        "House": House2
+    };
+
+    var Factory = new L.GeoJSON.AJAX('./data/Factory.geojson');       
+    var Factory2 = Factory.addTo(map);
+    var Factory3 = {
+        "Factory": Factory2
+    };
+
+    var Gov = new L.GeoJSON.AJAX('./data/Government.geojson');       
+    var Gov2 = Factory.addTo(map);
+    var Gov3 = {
+        "Government Building": Gov2
+    };
+
+    var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson');       
+    var Comm2 = Comm.addTo(map);
+    var Comm3 = {
+        "Commercial Office": Comm2
+    };
+
+    var Park = new L.GeoJSON.AJAX('./data/Park.geojson');       
+    var Park2 = Comm.addTo(map);
+    var Park3 = {
+        "Park": Park2
+    };
+
+
+    
 
     L.control.scale({
         position : 'bottomright',
@@ -110,7 +142,8 @@
     "Google Terain" : baseMapGoogleTerrain,
     };
 
-    L.control.layers(baseMapsControl,grid).addTo(map);
+    L.control.layers(baseMapsControl,grid,House3,Factory3,Gov3,Comm3,Park3).addTo(map);
+
     //L.control.layers(grid200m).addTo(map);
 
 
