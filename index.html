@@ -48,7 +48,7 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var geojsonLayer = new L.GeoJSON.AJAX('https://github.com/mamadtama/energy2d/blob/main/data/grid200m_box.geojson');       
+    var geojsonLayer = new L.GeoJSON.AJAX('./data/grid200m_box.geojson');       
     geojsonLayer.addTo(map);
 
     L.control.scale({
