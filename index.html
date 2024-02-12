@@ -142,13 +142,15 @@
     "Google Terain" : baseMapGoogleTerrain,
     };
 
-    L.control.layers(baseMapsControl).addTo(map);
-    L.control.addOverlay(grid, "Grid 200 m");
-    L.control.addOverlay(House2, "House");
-    L.control.addOverlay(Factory2, "Factory");
-    L.control.addOverlay(Gov2, "Government Building");
-    L.control.addOverlay(Comm2, "Commercial Office");
-    L.control.addOverlay(Park2, "Park");
+    var layerControl = L.control.layers(baseMapsControl, grid).addTo(map);
+
+    //L.control.layers(baseMapsControl).addTo(map);
+    //L.control.addOverlay(grid, "Grid 200 m");
+    layerControl.addOverlay(House2, "House");
+    layerControl.addOverlay(Factory2, "Factory");
+    layerControl.addOverlay(Gov2, "Government Building");
+    layerControl.addOverlay(Comm2, "Commercial Office");
+    layerControl.addOverlay(Park2, "Park");
 
 
     
