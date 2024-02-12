@@ -56,33 +56,15 @@
 
     var House = new L.GeoJSON.AJAX('./data/House.geojson');       
     var House2 = House.addTo(map);
-    var House3 = {
-        "House": House2
-    };
-
     var Factory = new L.GeoJSON.AJAX('./data/Factory.geojson');       
     var Factory2 = Factory.addTo(map);
-    var Factory3 = {
-        "Factory": Factory2
-    };
-
     var Gov = new L.GeoJSON.AJAX('./data/Government.geojson');       
-    var Gov2 = Factory.addTo(map);
-    var Gov3 = {
-        "Government Building": Gov2
-    };
-
+    var Gov2 = Gov.addTo(map);
     var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson');       
     var Comm2 = Comm.addTo(map);
-    var Comm3 = {
-        "Commercial Office": Comm2
-    };
-
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson');       
-    var Park2 = Comm.addTo(map);
-    var Park3 = {
-        "Park": Park2
-    };
+    var Park2 = Park.addTo(map);
+
 
 
     
