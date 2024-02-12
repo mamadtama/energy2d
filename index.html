@@ -121,11 +121,12 @@
             'fillColor': '#0000ff'
           });
         });
+        /*
         layer.on('mouseout', function () {
           this.setStyle({
             'fillColor': '#ff0000'
           });
-        });
+        }); */
         layer.on('click', function () {
           // Let's say you've got a property called url in your geojsonfeature:
           window.location = feature.properties.url;
