@@ -142,8 +142,15 @@
     "Google Terain" : baseMapGoogleTerrain,
     };
 
-    L.control.layers(baseMapsControl,grid,House3,Factory3,Gov3,Comm3,Park3).addTo(map);
+    L.control.layers(baseMapsControl,grid).addTo(map);
+    L.control.addOverlay(House2, "House");
+    L.control.addOverlay(Factory2, "Factory");
+    L.control.addOverlay(Gov2, "Government Building");
+    L.control.addOverlay(Comm2, "Commercial Office");
+    L.control.addOverlay(Park2, "Park");
 
+
+    
     //L.control.layers(grid200m).addTo(map);
 
 
