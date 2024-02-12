@@ -49,7 +49,11 @@
     }).addTo(map);
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson');       
-    //grid200m.addTo(map);
+    var grid2 = grid200m.addTo(map);
+
+    var grid = {
+        "Grid 200m": grid2
+    };
 
     L.control.scale({
         position : 'bottomright',
@@ -106,8 +110,8 @@
     "Google Terain" : baseMapGoogleTerrain,
     };
 
-    L.control.layers(baseMapsControl).addTo(map);
-    L.control.layers(grid200m).addTo(map);
+    L.control.layers(baseMapsControl,grid).addTo(map);
+    //L.control.layers(grid200m).addTo(map);
 
 
 </script>
