@@ -329,7 +329,7 @@
 (async () => {
 
     const data = await fetch(
-        'https://www.highcharts.com/samples/data/usdeur.json'
+        'data/usdeur.json'
     ).then(response => response.json());
 
     Highcharts.chart('containerdemand', {
