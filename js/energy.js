@@ -7,11 +7,16 @@
 
     var lat;
     var lng;   
+    var theMarker = {};
     map.on('click', function(e) {
         //console.log(e.latlng);  //So you can see if it's working
         lat = e.latlng.lat;
         lng = e.latlng.lng;
-        var marker = new L.marker(e.latlng).addTo(map).on('click', e => e.target.remove());
+        if (theMarker != undefined) {
+              map.removeLayer(theMarker);
+        };
+        //Add a marker to show where you clicked.
+         theMarker = L.marker([lat,lon]).addTo(map); 
     });
 
     /*
