@@ -32,6 +32,11 @@
     
     var gui = {};
     var VIS = "visible";
+
+    function ON_CLICK(id, listener) {
+        var e = document.getElementById(id);
+        if (e) e.addEventListener("click", listener);
+    }
     gui.clean = function () {
         gui.popup.hide();
         gui.popupforecast.hide();
@@ -96,6 +101,14 @@
           if (this.modal) app.resume();
         }
     };
+
+    var cleanView = function () {
+        popup.hide();
+        if (gui.layerPanel.initialized) gui.layerPanel.hide();
+      };
+
+    // popup
+    ON_CLICK("closebtn", cleanView);
       
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
