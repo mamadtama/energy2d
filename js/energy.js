@@ -31,7 +31,7 @@
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map); 
     
     var gui = {};
-    
+    var VIS = "visible";
     gui.clean = function () {
         gui.popup.hide();
         gui.popupforecast.hide();
@@ -50,7 +50,6 @@
           if (modal) app.pause();
           else if (this.modal) app.resume();
     
-          this.content = obj;
           this.modal = Boolean(modal);
     
           var e = E("layerpanel");
@@ -98,15 +97,14 @@
         }
     };
       
-    showQueryResult = function (lat,lng,x,y,id) {
+    var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
         e = E("qr_coords_table");
         if (e) {
           if (lng) {
             e.classList.remove("hidden");
-            var pt = app.scene.toMapCoordinates(point);
             e = E("qr_coords");
-            e.innerHTML = [new_xy[0].toFixed(3), new_xy[1].toFixed(3), pt.z.toFixed(0)].join(", ");
+            e.innerHTML = [lat.toFixed(3), lng.toFixed(3), id].join(", ");
           }
           else {
             e.classList.add("hidden");
@@ -141,7 +139,7 @@
           // Let's say you've got a property called url in your geojsonfeature:
             console.log(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);
           //window.location = feature.properties.url;
-          //showQueryResult(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);  
+          showQueryResult(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);  
         });
       }}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
