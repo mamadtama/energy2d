@@ -64,6 +64,7 @@
     var cameraAction = {
         zoom: function () {
           map.panTo(new L.LatLng(lat, lng));
+          map.flyTo(lat, lng);  
           //cleanView();
         }
     }
@@ -134,6 +135,9 @@
     // popup
     ON_CLICK("closebtn", cleanView);
     ON_CLICK("zoomtopoint", function () {
+      cameraAction.zoom();
+    });
+    ON_CLICK("zoomtolayer", function () {
       cameraAction.zoom();
     });
       
