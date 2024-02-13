@@ -370,7 +370,7 @@
 	    //var intervalsPress = [0, 8, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
 	     // 44, 46, 48, 50, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96 ];
 	    
-	    var intervalsPress = [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 
+	    var intervalsPress = [-500, 0, 500, 1000, 5000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 
 				  140000, 150000, 160000, 170000, 180000, 190000];
 		    
 	    var bandsWind = rastertools.isobands(spdData, geoTransform, intervalsPress);
@@ -395,6 +395,10 @@
 	           d > 30000   ? '#fee4d8' :
 		   d > 20000   ? '#ffece4' :
 		   d > 10000   ? '#fff5f0' : 
+		   d > 5000   ? '#fffaf7' :
+		   d > 1000   ? '#fff5f0' : 
+		   d > 500   ? '#fffcfa' : 
+		   d >  0   ? '#fffdfc' :  
 	           d > -500   ? '#ffffff' :
 	                    '#ffffff';
 	            }
@@ -405,7 +409,7 @@
 			opacity: 1,
 			color: getColor(feature.properties[0].lowerValue),
 			dashArray: '3',
-			fillOpacity: 0.5
+			fillOpacity: 0.3
 		      };
 	    }
 	
