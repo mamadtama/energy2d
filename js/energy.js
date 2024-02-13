@@ -333,114 +333,113 @@
     layerControl.addOverlay(Comm, "Commercial Office");
     layerControl.addOverlay(Park, "Park");
 
-
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './data/demand_plot3.tif', true);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
-
-    var tiff = GeoTIFF.parse(this.response);
-    var image = tiff.getImage();
-    var tiffWidth = image.getWidth();
-    var tiffHeight = image.getHeight();
-    var rasters = image.readRasters();
-    var tiepoint = image.getTiePoints()[0];
-    var pixelScale = image.getFileDirectory().ModelPixelScale;
-    var geoTransform = [tiepoint.x, pixelScale[0], 0, tiepoint.y, 0, -1*pixelScale[1]];
-    var pressData = new Array(tiffHeight);
-    var tempData = new Array(tiffHeight);
-    var uData = new Array(tiffHeight);
-    var vData = new Array(tiffHeight);
-    var spdData = new Array(tiffHeight);
-    for (var j = 0; j<tiffHeight; j++){
-        pressData[j] = new Array(tiffWidth);
-        tempData[j] = new Array(tiffWidth);
-        uData[j] = new Array(tiffWidth);
-        vData[j] = new Array(tiffWidth);
-        spdData[j] = new Array(tiffWidth);
-        for (var i = 0; i<tiffWidth; i++){
-            pressData[j][i] = rasters[0][i + j*tiffWidth];
-            tempData[j][i] = rasters[1][i + j*tiffWidth];
-            uData[j][i] = rasters[2][i + j*tiffWidth];
-            //vData[j][i] = rasters[3][i + j*tiffWidth];
-            spdData[j][i] = 1.943844492 * Math.sqrt(uData[j][i]*uData[j][i] + uData[j][i]*uData[j][i]);
-        }
-    }
-
-    var intervalsPress = [0, 8, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
-      44, 46, 48, 50, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96 ];
-    //var intervalsPress = [970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998,
-    //  1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028];
-	    
-    var bandsWind = rastertools.isobands(spdData, geoTransform, intervalsPress);
-
-    function getColor(d) {
-    return d > 92   ? '#643c32' :
-           d > 88   ? '#643c32' :
-           d > 84   ? '#a50000' :
-           d > 80   ? '#c10000' :
-           d > 76   ? '#e11400' :
-           d > 72   ? '#ff3200' :
-           d > 68   ? '#ff6000' :
-           d > 64   ? '#ffa100' :
-           d > 60   ? '#ffc13c' :
-           d > 56   ? '#ffe978' :
-           d > 52   ? '#c9ffbf' :
-           d > 50   ? '#b5fbab' :
-           d > 48   ? '#97f58d' :
-           d > 46   ? '#78f572' :
-           d > 44   ? '#50ef50' :
-           d > 42   ? '#36d33c' :
-           d > 40   ? '#1eb31e' :
-           d > 38   ? '#0ea10e' :
-           d > 36   ? '#e1ffff' :
-           d > 34   ? '#b5f1fb' :
-           d > 32   ? '#97d3fb' :
-           d > 30   ? '#78b9fb' :
-           d > 28   ? '#50a5f5' :
-           d > 26   ? '#3c97f5' :
-           d > 24   ? '#2883f1' :
-           d > 22   ? '#1e6eeb' :
-           d > 20   ? '#1464d3' :
-           d > 18   ? '#646464' :
-           d > 16   ? '#979797' :
-           d > 14   ? '#bababa' :
-           d > 12   ? '#d1d1d1' :
-           d > 8    ? '#e5e5e6' :
-           d > 0   ? '#ffffff' :
-                    '#ffffff';
-            }
-    function style(feature) {
-	    return {
-		fillColor: getColor(feature.properties[0].lowerValue),
-		weight: 2,
-		opacity: 1,
-		color: getColor(feature.properties[0].lowerValue),
-		dashArray: '3',
-		fillOpacity: 0.5
-	      };
-    }
-
-    var bandsWindLayer = L.geoJson(bandsWind, {
-      style: style, onEachFeature: onEachFeatureIso
-    });
-
-    function onEachFeatureIso(feature, layer) {
-	    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' mm', {
-	        direction: 'right',
-	        className: 'countryLabel',
-	        sticky: true
+	    var tiff = GeoTIFF.parse(this.response);
+	    var image = tiff.getImage();
+	    var tiffWidth = image.getWidth();
+	    var tiffHeight = image.getHeight();
+	    var rasters = image.readRasters();
+	    var tiepoint = image.getTiePoints()[0];
+	    var pixelScale = image.getFileDirectory().ModelPixelScale;
+	    var geoTransform = [tiepoint.x, pixelScale[0], 0, tiepoint.y, 0, -1*pixelScale[1]];
+	    var pressData = new Array(tiffHeight);
+	    var tempData = new Array(tiffHeight);
+	    var uData = new Array(tiffHeight);
+	    var vData = new Array(tiffHeight);
+	    var spdData = new Array(tiffHeight);
+	    for (var j = 0; j<tiffHeight; j++){
+	        pressData[j] = new Array(tiffWidth);
+	        tempData[j] = new Array(tiffWidth);
+	        uData[j] = new Array(tiffWidth);
+	        vData[j] = new Array(tiffWidth);
+	        spdData[j] = new Array(tiffWidth);
+	        for (var i = 0; i<tiffWidth; i++){
+	            pressData[j][i] = rasters[0][i + j*tiffWidth];
+	            tempData[j][i] = rasters[1][i + j*tiffWidth];
+	            uData[j][i] = rasters[2][i + j*tiffWidth];
+		    spdData[j][i] = uData[j][i]; 	
+	            //vData[j][i] = rasters[3][i + j*tiffWidth];
+	            //spdData[j][i] = 1.943844492 * Math.sqrt(uData[j][i]*uData[j][i] + uData[j][i]*uData[j][i]);
+	        }
+	    }
+	
+	    var intervalsPress = [0, 8, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
+	      44, 46, 48, 50, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96 ];
+	    //var intervalsPress = [970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998,
+	    //  1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028];
+		    
+	    var bandsWind = rastertools.isobands(spdData, geoTransform, intervalsPress);
+	
+	    function getColor(d) {
+	    return d > 92   ? '#643c32' :
+	           d > 88   ? '#643c32' :
+	           d > 84   ? '#a50000' :
+	           d > 80   ? '#c10000' :
+	           d > 76   ? '#e11400' :
+	           d > 72   ? '#ff3200' :
+	           d > 68   ? '#ff6000' :
+	           d > 64   ? '#ffa100' :
+	           d > 60   ? '#ffc13c' :
+	           d > 56   ? '#ffe978' :
+	           d > 52   ? '#c9ffbf' :
+	           d > 50   ? '#b5fbab' :
+	           d > 48   ? '#97f58d' :
+	           d > 46   ? '#78f572' :
+	           d > 44   ? '#50ef50' :
+	           d > 42   ? '#36d33c' :
+	           d > 40   ? '#1eb31e' :
+	           d > 38   ? '#0ea10e' :
+	           d > 36   ? '#e1ffff' :
+	           d > 34   ? '#b5f1fb' :
+	           d > 32   ? '#97d3fb' :
+	           d > 30   ? '#78b9fb' :
+	           d > 28   ? '#50a5f5' :
+	           d > 26   ? '#3c97f5' :
+	           d > 24   ? '#2883f1' :
+	           d > 22   ? '#1e6eeb' :
+	           d > 20   ? '#1464d3' :
+	           d > 18   ? '#646464' :
+	           d > 16   ? '#979797' :
+	           d > 14   ? '#bababa' :
+	           d > 12   ? '#d1d1d1' :
+	           d > 8    ? '#e5e5e6' :
+	           d > 0   ? '#ffffff' :
+	                    '#ffffff';
+	            }
+	    function style(feature) {
+		    return {
+			fillColor: getColor(feature.properties[0].lowerValue),
+			weight: 2,
+			opacity: 1,
+			color: getColor(feature.properties[0].lowerValue),
+			dashArray: '3',
+			fillOpacity: 0.5
+		      };
+	    }
+	
+	    var bandsWindLayer = L.geoJson(bandsWind, {
+	      style: style, onEachFeature: onEachFeatureIso
 	    });
-	}
-   //Creating the color scale https://github.com/santilland/plotty/blob/master/src/plotty.js
-   var cs_def = {positions:[0.0,0.030303030303,0.0606060606061,0.0909090909091,0.121212121212,0.151515151515,0.181818181818,0.212121212121,0.242424242424,0.272727272727,0.30303030303,0.333333333333,0.363636363636,0.393939393939,0.424242424242,0.454545454545,0.484848484848,0.515151515152,0.545454545455,0.575757575758,0.606060606061,0.636363636364,0.666666666667,0.69696969697,0.727272727273,0.757575757576,0.787878787879,0.818181818182,0.848484848485,0.878787878788,0.909090909091,0.939393939394,0.969696969697,1.0],
-     colors:["#ffffff", "#e5e5e6" , "#d1d1d1", "#bababa", "#979797", "#646464",
-             "#1464d3", "#1e6eeb", "#2883f1", "#3c97f5", "#50a5f5", "#78b9fb", "#97d3fb", "#b5f1fb", "#e1ffff",
-             "#0ea10e", "#1eb31e", "#36d33c", "#50ef50", "#78f572", "#97f58d", "#b5fbab", "#c9ffbf",
-             "#ffe978", "#ffc13c", "#ffa100", "#ff6000", "#ff3200", "#e11400", "#c10000", "#a50000",
-             "#643c32", "#785046", "#8d645a"]};
-
-   layerControl.addOverlay(bandsWindLayer, "Energy demand");
+	
+	    function onEachFeatureIso(feature, layer) {
+		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' mm', {
+		        direction: 'right',
+		        className: 'countryLabel',
+		        sticky: true
+		    });
+		}
+	   //Creating the color scale https://github.com/santilland/plotty/blob/master/src/plotty.js
+	   var cs_def = {positions:[0.0,0.030303030303,0.0606060606061,0.0909090909091,0.121212121212,0.151515151515,0.181818181818,0.212121212121,0.242424242424,0.272727272727,0.30303030303,0.333333333333,0.363636363636,0.393939393939,0.424242424242,0.454545454545,0.484848484848,0.515151515152,0.545454545455,0.575757575758,0.606060606061,0.636363636364,0.666666666667,0.69696969697,0.727272727273,0.757575757576,0.787878787879,0.818181818182,0.848484848485,0.878787878788,0.909090909091,0.939393939394,0.969696969697,1.0],
+	     colors:["#ffffff", "#e5e5e6" , "#d1d1d1", "#bababa", "#979797", "#646464",
+	             "#1464d3", "#1e6eeb", "#2883f1", "#3c97f5", "#50a5f5", "#78b9fb", "#97d3fb", "#b5f1fb", "#e1ffff",
+	             "#0ea10e", "#1eb31e", "#36d33c", "#50ef50", "#78f572", "#97f58d", "#b5fbab", "#c9ffbf",
+	             "#ffe978", "#ffc13c", "#ffa100", "#ff6000", "#ff3200", "#e11400", "#c10000", "#a50000",
+	             "#643c32", "#785046", "#8d645a"]};
+	
+	   layerControl.addOverlay(bandsWindLayer, "Energy demand");
 
   };
   xhr.send();
