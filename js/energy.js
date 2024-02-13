@@ -334,7 +334,7 @@
     layerControl.addOverlay(Park, "Park");
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', './data/demand_plot3.tif', true);
+    xhr.open('GET', './data/demand3.tif', true);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
 	    var tiff = GeoTIFF.parse(this.response);
@@ -425,7 +425,7 @@
 	    });
 	
 	    function onEachFeatureIso(feature, layer) {
-		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' kWh', {
+		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' x 10 kWh', {
 		        direction: 'right',
 		        className: 'countryLabel',
 		        sticky: true
