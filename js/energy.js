@@ -354,10 +354,10 @@
             style: style,
             onEachFeature: onEachFeatureIso,
         }).addTo(map);
-        var isohyet = new L.featureGroup();
-        isohyet.addLayer(bandsWindLayer)
-        map.fitBounds(isohyet.getBounds());
-        //layerControl.addOverlay(bandsWindLayer, "Energy Demand");
+        //var isohyet = new L.featureGroup();
+        //isohyet.addLayer(bandsWindLayer)
+        //map.fitBounds(isohyet.getBounds());
+        layerControl.addOverlay(bandsWindLayer, "Energy Demand");
 
         var gradient = ["#C9F2F4", "#BBE8F2", "#AEDEF1", "#A1D4EF", "#94CBEE", "#87C1ED", "#7AB7EB", "#6DADEA", "#60A4E9", "#5699E3", "#538EDB", "#5183D4", "#4F79CD", "#4D6EC6", "#4B63BF", "#4959B8", "#474EB1", "#4544AA", "#2C2BA7", "#2120A4", "#1211A1", "#07059B", "#050487"]
         function getColor(d) {
