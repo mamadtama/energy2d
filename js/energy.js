@@ -84,33 +84,7 @@
 
     
 
-    
-    var gradient = ["#C9F2F4", "#BBE8F2", "#AEDEF1", "#A1D4EF", "#94CBEE", "#87C1ED", "#7AB7EB", "#6DADEA", "#60A4E9", "#5699E3", "#538EDB", "#5183D4", "#4F79CD", "#4D6EC6", "#4B63BF", "#4959B8", "#474EB1", "#4544AA", "#2C2BA7", "#2120A4", "#1211A1", "#07059B", "#050487"]
-    function getColor(d) {
-        return d > 190000 && d <= 192000 ? gradient[22] :
-            d > 170000 ? gradient[21] :
-            d > 160000 ? gradient[20] :
-            d > 150000 ? gradient[19] :
-            d > 140000 ? gradient[18] :
-            d > 130000 ? gradient[16] :
-            d > 120000 ? gradient[15] :
-            d > 110000 ? gradient[14] :
-            d > 100000 ? gradient[13] :
-            d > 90000 ? gradient[12] :
-            d > 80000 ? gradient[11] :
-            d > 70000 ? gradient[10] :
-            d > 60000 ? gradient[9] :
-            d > 50000 ? gradient[8] :
-            d > 40000 ? gradient[7] :
-            d > 30000 ? gradient[6] :
-            d > 20000 ? gradient[5] :
-            d > 10000 ? gradient[4] :
-            d > 5000 ? gradient[3] :
-            d > 2500 ? gradient[2] :
-            d > 1000 ? gradient[1] :
-            d > 500 ? gradient[0] :
-            "#f2f2f2";
-    }
+
     
     var gui = {};
     var VIS = "visible";
@@ -359,32 +333,62 @@
     xhr.open('GET','./data/demand_plot2.tif', true);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
-    var tiff = GeoTIFF.parse(this.response);
-    var image = tiff.getImage();
-    var tiffWidth = image.getWidth();
-    var tiffHeight = image.getHeight();
-    var rasters = image.readRasters();
-    var tiepoint = image.getTiePoints()[0];
-    var pixelScale = image.getFileDirectory().ModelPixelScale;
-    var geoTransform = [tiepoint.x, pixelScale[0], 0, tiepoint.y, 0, -1 * pixelScale[1]];
-    var pressData = new Array(tiffHeight);
-    for (var j = 0; j < tiffHeight; j++) {
-        pressData[j] = new Array(tiffWidth);
-        for (var i = 0; i < tiffWidth; i++) {
-            pressData[j][i] = rasters[0][i + j * tiffWidth];
+        var tiff = GeoTIFF.parse(this.response);
+        var image = tiff.getImage();
+        var tiffWidth = image.getWidth();
+        var tiffHeight = image.getHeight();
+        var rasters = image.readRasters();
+        var tiepoint = image.getTiePoints()[0];
+        var pixelScale = image.getFileDirectory().ModelPixelScale;
+        var geoTransform = [tiepoint.x, pixelScale[0], 0, tiepoint.y, 0, -1 * pixelScale[1]];
+        var pressData = new Array(tiffHeight);
+        for (var j = 0; j < tiffHeight; j++) {
+            pressData[j] = new Array(tiffWidth);
+            for (var i = 0; i < tiffWidth; i++) {
+                pressData[j][i] = rasters[0][i + j * tiffWidth];
+            }
         }
-    }
-    var intervalsSpd = [12, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 1300];
-    bandsWind = rastertools.isobands(pressData, geoTransform, intervalsSpd);
-    bandsWindLayer = L.geoJson(bandsWind, {
-        style: style,
-        onEachFeature: onEachFeatureIso,
-    }).addTo(map);
+        var intervalsSpd = [12, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 1300];
+        bandsWind = rastertools.isobands(pressData, geoTransform, intervalsSpd);
+        bandsWindLayer = L.geoJson(bandsWind, {
+            style: style,
+            onEachFeature: onEachFeatureIso,
+        }).addTo(map);
         var isohyet = new L.featureGroup();
         isohyet.addLayer(bandsWindLayer)
         map.fitBounds(isohyet.getBounds());
-        layerControl.addOverlay(bandsWindLayer, "Energy Demand");
+        //layerControl.addOverlay(bandsWindLayer, "Energy Demand");
+
+        var gradient = ["#C9F2F4", "#BBE8F2", "#AEDEF1", "#A1D4EF", "#94CBEE", "#87C1ED", "#7AB7EB", "#6DADEA", "#60A4E9", "#5699E3", "#538EDB", "#5183D4", "#4F79CD", "#4D6EC6", "#4B63BF", "#4959B8", "#474EB1", "#4544AA", "#2C2BA7", "#2120A4", "#1211A1", "#07059B", "#050487"]
+        function getColor(d) {
+        return d > 190000 && d <= 192000 ? gradient[22] :
+            d > 170000 ? gradient[21] :
+            d > 160000 ? gradient[20] :
+            d > 150000 ? gradient[19] :
+            d > 140000 ? gradient[18] :
+            d > 130000 ? gradient[16] :
+            d > 120000 ? gradient[15] :
+            d > 110000 ? gradient[14] :
+            d > 100000 ? gradient[13] :
+            d > 90000 ? gradient[12] :
+            d > 80000 ? gradient[11] :
+            d > 70000 ? gradient[10] :
+            d > 60000 ? gradient[9] :
+            d > 50000 ? gradient[8] :
+            d > 40000 ? gradient[7] :
+            d > 30000 ? gradient[6] :
+            d > 20000 ? gradient[5] :
+            d > 10000 ? gradient[4] :
+            d > 5000 ? gradient[3] :
+            d > 2500 ? gradient[2] :
+            d > 1000 ? gradient[1] :
+            d > 500 ? gradient[0] :
+            "#f2f2f2";
+        }
     };
+
+
+
 
 (async () => {
 
