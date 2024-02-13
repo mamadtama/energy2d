@@ -395,7 +395,7 @@
 	           d > 30000   ? '#fee4d8' :
 		   d > 20000   ? '#ffece4' :
 		   d > 10000   ? '#fff5f0' : 
-	           d > 0   ? '#ffffff' :
+	           d > -500   ? '#ffffff' :
 	                    '#ffffff';
 	            }
 	    function style(feature) {
