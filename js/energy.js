@@ -334,7 +334,7 @@
     layerControl.addOverlay(Park, "Park");
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', './data/demand3.tif', true);
+    xhr.open('GET', './data/energy_demand.tif', true);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
 	    var tiff = GeoTIFF.parse(this.response);
@@ -370,28 +370,31 @@
 	    //var intervalsPress = [0, 8, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
 	     // 44, 46, 48, 50, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96 ];
 	    
-	    var intervalsPress = [10400, 10500, 10600, 10700, 10800, 10900, 11100, 11200, 11300, 11400, 12000];
+	    var intervalsPress = [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 
+				  140000, 150000, 160000, 170000, 180000, 190000];
 		    
 	    var bandsWind = rastertools.isobands(spdData, geoTransform, intervalsPress);
 	
 	    function getColor(d) {
-	    return d > 12000   ? '#643c32' :
-	           d > 11400   ? '#643c32' :
-	           d > 11300   ? '#c10000' :
-	           d > 11200   ? '#e11400' :
-	           d > 11100   ? '#ff3200' :
-	           d > 10900   ? '#ff6000' :
-	           d > 10800   ? '#ffa100' :
-	           d > 10700   ? '#ffc13c' :
-	           d > 10600   ? '#ffe978' :
-	           d > 10500   ? '#c9ffbf' :
-	           d > 10400   ? '#b5fbab' :
-	           d > 10200   ? '#97f58d' :
-	           d > 10100   ? '#78f572' :
-	           d > 10000   ? '#50ef50' :
-	           d > 9800   ? '#36d33c' :
-	           d > 9600   ? '#1eb31e' :
-	           d > 9200   ? '#0ea10e' :
+	    return d > 190000   ? '#880811' :
+	           d > 180000   ? '#a70f15' :
+	           d > 170000   ? '#b71319' :
+	           d > 160000   ? '#c8171c' :
+	           d > 150000   ? '#d72422' :
+	           d > 140000   ? '#e63228' :
+	           d > 130000   ? '#f14230' :
+	           d > 120000   ? '#f6553c' :
+	           d > 110000   ? '#fa6849' :
+	           d > 100000   ? '#fb7858' :
+	           d > 90000   ? '#fc8868' :
+	           d > 80000   ? '#fc997a' :
+	           d > 70000   ? '#fca98d' :
+	           d > 60000   ? '#fcbaa0' :
+	           d > 50000   ? '#fdc9b4' :
+	           d > 40000   ? '#fed8c7' :
+	           d > 30000   ? '#fee4d8' :
+		   d > 20000   ? '#ffece4' :
+		   d > 10000   ? '#fff5f0' : 
 	           d > 0   ? '#ffffff' :
 	                    '#ffffff';
 	            }
