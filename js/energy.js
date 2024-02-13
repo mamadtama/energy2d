@@ -424,8 +424,16 @@
     }
 
     var bandsWindLayer = L.geoJson(bandsWind, {
-      style: style
+      style: style, onEachFeature: onEachFeatureIso
     });
+
+    function onEachFeatureIso(feature, layer) {
+	    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' mm', {
+	        direction: 'right',
+	        className: 'countryLabel',
+	        sticky: true
+	    });
+	}
 
     var intervalsPress = [970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998,
       1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028];
@@ -473,7 +481,6 @@
     canvasRaster.width = width;
     canvasRaster.height = height;
     canvasRaster.style.display = "none";
-
     document.body.appendChild(canvasRaster);
 
    var contextRaster = canvasRaster.getContext("2d");
@@ -533,9 +540,9 @@
     "Image": imageLayer
     }).addTo(map);
 */
-   layerControl.addOverlay(bandsWindLayer, "Wind speed");
+   layerControl.addOverlay(bandsWindLayer, "Energy demand");
 	
-
+/*
   map.on('click', function(e) {
     var xTiff = (e.latlng.lng - geoTransform[0])/geoTransform[1];
     var yTiff = ( e.latlng.lat - geoTransform[3])/geoTransform[5];
@@ -548,11 +555,8 @@
     if(dir<0){dir = dir + 360;}
     if(dir>360){dir = dir - 360;}
 
-    L.popup()
-      .setLatLng(e.latlng)
-      .setContent("Wind speed: " + spd )
-      .openOn(map);
-  });
+    //L.popup().setLatLng(e.latlng).setContent("Wind speed: " + spd ).openOn(map);
+  });*/
   };
   xhr.send();
 
