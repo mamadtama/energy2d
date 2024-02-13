@@ -194,9 +194,9 @@
     ON_CLICK("zoomtolayer", function () {
       cameraAction.zoom();
     });
-    ON_CLICK("powergenbtn", function () {
-      powergen.showResult();
-      console.log('powergenbtn!');
+    ON_CLICK("demandbtn", function () {
+      demand.showResult();
+      console.log('demand!');
     });
 
     
