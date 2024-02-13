@@ -362,7 +362,7 @@
             pressData[j][i] = rasters[0][i + j*tiffWidth];
             tempData[j][i] = rasters[1][i + j*tiffWidth];
             uData[j][i] = rasters[2][i + j*tiffWidth];
-            vData[j][i] = rasters[3][i + j*tiffWidth];
+            //vData[j][i] = rasters[3][i + j*tiffWidth];
             spdData[j][i] = 1.943844492 * Math.sqrt(uData[j][i]*uData[j][i] + uData[j][i]*uData[j][i]);
         }
     }
