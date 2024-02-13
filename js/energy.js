@@ -130,8 +130,8 @@
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
         console.log(retrieved_data);
-        var da = retrieved_data[id];
-        if (layer && e) e.innerHTML = 'House: '+(da["House_PCT"]*100).toFixed(2).toString()
+        var da = retrieved_data[id-1];
+        if (da && e) e.innerHTML = 'House: '+(da["House_PCT"]*100).toFixed(2).toString()
                     +' % <br> Factory :'+(da["Factory__1"]*100).toFixed(2).toString()                      
                                 +' % <br> Gov. Building :'+(da["Govern_PCT"]*100).toFixed(2).toString()
                                 +' % <br> Comm. Building :'+(da["Commerc_PC"]*100).toFixed(2).toString()
