@@ -337,6 +337,7 @@
     console.log(xhr);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
+        console.log(e);
         var tiff = GeoTIFF.parse(this.response);
         var image = tiff.getImage();
         var tiffWidth = image.getWidth();
