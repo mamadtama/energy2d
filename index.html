@@ -7,11 +7,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="3kgIVH1fH5PJyrJguMN52mOkox8KMlTCbyUquNAy">
     <title>Net-zero Carbon Smart City</title>
-     <link rel="stylesheet" href="./css/leaflet.css"/>
-     <link rel="stylesheet" type="text/css" href="./css/energy.css">
+    <link rel="stylesheet" href="./css/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/energy.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-      <script src="./js/leaflet.js"></script>
-      <script src="./js/leaflet.ajax.min.js"></script>
+    <script src="./js/leaflet.js"></script>
+    <script src="./js/leaflet.ajax.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
       
     <style type="text/css">
         #map{
@@ -93,7 +97,13 @@
       <div id="forecast">
         <table id="qr_forecast_table">
               <caption>Forecast of Energy Demand</caption>
-          <tr><td id="forecast_curve">Test</td></tr>
+              <tr><td id="forecast_curve"><figure class="highcharts-figure">
+                <div id="containerdemand"></div>
+                <p class="highcharts-description">
+                    Time series of demand forecast.
+                </p>
+            </figure>
+          </td></tr>
         </table>
       </div>
   </div>
