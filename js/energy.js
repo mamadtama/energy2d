@@ -332,9 +332,9 @@
     var xhr = new XMLHttpRequest();
     xhr.open('GET','demand_plot3.tif', true);
     console.log(xhr);
-    var xhr = new XMLHttpRequest();
-    xhr.open('vardah.tiff', true);
-    console.log(xhr);
+    //var xhr = new XMLHttpRequest();
+    //xhr.open('GET','vardah.tiff', true);
+    //console.log(xhr);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
         console.log(e);
@@ -353,44 +353,55 @@
                 pressData[j][i] = rasters[0][i + j * tiffWidth];
             }
         }
-        var intervalsSpd = [12, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 1300];
-        bandsWind = rastertools.isobands(pressData, geoTransform, intervalsSpd);
-        bandsWindLayer = L.geoJson(bandsWind, {
+        var intervalsSpd = [10, 500, 1000, 2500, 5000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000, 160000, 170000, 190000, 192000];
+        var bandsWind = rastertools.isobands(pressData, geoTransform, intervalsSpd);
+        var gradient = ["#C9F2F4", "#BBE8F2", "#AEDEF1", "#A1D4EF", "#94CBEE", "#87C1ED", "#7AB7EB", "#6DADEA", "#60A4E9", "#5699E3", "#538EDB", "#5183D4", "#4F79CD", "#4D6EC6", "#4B63BF", "#4959B8", "#474EB1", "#4544AA", "#2C2BA7", "#2120A4", "#1211A1", "#07059B", "#050487"]
+        function getColor(d) {
+            return d > 190000 && d <= 192000 ? gradient[22] :
+                d > 170000 ? gradient[21] :
+                d > 160000 ? gradient[20] :
+                d > 150000 ? gradient[19] :
+                d > 140000 ? gradient[18] :
+                d > 130000 ? gradient[16] :
+                d > 120000 ? gradient[15] :
+                d > 110000 ? gradient[14] :
+                d > 100000 ? gradient[13] :
+                d > 90000 ? gradient[12] :
+                d > 80000 ? gradient[11] :
+                d > 70000 ? gradient[10] :
+                d > 60000 ? gradient[9] :
+                d > 50000 ? gradient[8] :
+                d > 40000 ? gradient[7] :
+                d > 30000 ? gradient[6] :
+                d > 20000 ? gradient[5] :
+                d > 10000 ? gradient[4] :
+                d > 5000 ? gradient[3] :
+                d > 2500 ? gradient[2] :
+                d > 1000 ? gradient[1] :
+                d > 500 ? gradient[0] :
+                "#f2f2f2";
+        }
+        function onEachFeatureIso(feature, layer) {
+            layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' mm', {
+                direction: 'right',
+                className: 'countryLabel',
+                sticky: true
+            });
+        }
+        var bandsWindLayer = L.geoJson(bandsWind, {
             style: style,
             onEachFeature: onEachFeatureIso,
-        }).addTo(map);
+        })//.addTo(map);
         //var isohyet = new L.featureGroup();
         //isohyet.addLayer(bandsWindLayer)
         //map.fitBounds(isohyet.getBounds());
-        console.log('tes');
+        //console.log('tes');
+        
         layerControl.addOverlay(bandsWindLayer, "Energy Demand");
 
-        var gradient = ["#C9F2F4", "#BBE8F2", "#AEDEF1", "#A1D4EF", "#94CBEE", "#87C1ED", "#7AB7EB", "#6DADEA", "#60A4E9", "#5699E3", "#538EDB", "#5183D4", "#4F79CD", "#4D6EC6", "#4B63BF", "#4959B8", "#474EB1", "#4544AA", "#2C2BA7", "#2120A4", "#1211A1", "#07059B", "#050487"]
-        function getColor(d) {
-        return d > 190000 && d <= 192000 ? gradient[22] :
-            d > 170000 ? gradient[21] :
-            d > 160000 ? gradient[20] :
-            d > 150000 ? gradient[19] :
-            d > 140000 ? gradient[18] :
-            d > 130000 ? gradient[16] :
-            d > 120000 ? gradient[15] :
-            d > 110000 ? gradient[14] :
-            d > 100000 ? gradient[13] :
-            d > 90000 ? gradient[12] :
-            d > 80000 ? gradient[11] :
-            d > 70000 ? gradient[10] :
-            d > 60000 ? gradient[9] :
-            d > 50000 ? gradient[8] :
-            d > 40000 ? gradient[7] :
-            d > 30000 ? gradient[6] :
-            d > 20000 ? gradient[5] :
-            d > 10000 ? gradient[4] :
-            d > 5000 ? gradient[3] :
-            d > 2500 ? gradient[2] :
-            d > 1000 ? gradient[1] :
-            d > 500 ? gradient[0] :
-            "#f2f2f2";
-        }
+        L.control.layers(null, {
+            "Energy Demand": bandsWindLayer
+            }).addTo(map);
     };
 
 
