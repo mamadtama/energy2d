@@ -348,22 +348,22 @@
     var pixelScale = image.getFileDirectory().ModelPixelScale;
     var geoTransform = [tiepoint.x, pixelScale[0], 0, tiepoint.y, 0, -1*pixelScale[1]];
     var pressData = new Array(tiffHeight);
-    /*var tempData = new Array(tiffHeight);
+    var tempData = new Array(tiffHeight);
     var uData = new Array(tiffHeight);
     var vData = new Array(tiffHeight);
-    var spdData = new Array(tiffHeight);*/
+    var spdData = new Array(tiffHeight);
     for (var j = 0; j<tiffHeight; j++){
         pressData[j] = new Array(tiffWidth);
-        /*tempData[j] = new Array(tiffWidth);
+        tempData[j] = new Array(tiffWidth);
         uData[j] = new Array(tiffWidth);
         vData[j] = new Array(tiffWidth);
-        spdData[j] = new Array(tiffWidth);*/
+        spdData[j] = new Array(tiffWidth);
         for (var i = 0; i<tiffWidth; i++){
             pressData[j][i] = rasters[0][i + j*tiffWidth];
-            //tempData[j][i] = rasters[1][i + j*tiffWidth];
-            //uData[j][i] = rasters[2][i + j*tiffWidth];
-            //vData[j][i] = rasters[3][i + j*tiffWidth];
-            //spdData[j][i] = 1.943844492 * Math.sqrt(uData[j][i]*uData[j][i] + uData[j][i]*uData[j][i]);
+            tempData[j][i] = rasters[1][i + j*tiffWidth];
+            uData[j][i] = rasters[2][i + j*tiffWidth];
+            vData[j][i] = rasters[3][i + j*tiffWidth];
+            spdData[j][i] = 1.943844492 * Math.sqrt(uData[j][i]*uData[j][i] + uData[j][i]*uData[j][i]);
         }
     }
 
@@ -452,7 +452,8 @@
              "#0ea10e", "#1eb31e", "#36d33c", "#50ef50", "#78f572", "#97f58d", "#b5fbab", "#c9ffbf",
              "#ffe978", "#ffc13c", "#ffa100", "#ff6000", "#ff3200", "#e11400", "#c10000", "#a50000",
              "#643c32", "#785046", "#8d645a"]};
-   
+
+/*
 	    
    var scaleWidth = 256;
    var canvasColorScale = document.createElement('canvas');
@@ -531,7 +532,7 @@
 
    var imageLayer = L.imageOverlay(canvasRaster.toDataURL(), imageBounds,{
      opacity: 0.5
-   }); 
+   });  */
 
    layerControl.addOverlay(bandsWindLayer, "Energy demand");
 
