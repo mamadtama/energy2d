@@ -118,10 +118,10 @@
           for (var i = e.children.length - 1; i >= 0; i--) {
             if (e.children[i].tagName.toUpperCase() == "TR") e.removeChild(e.children[i]);
           }
+        }
           else {
             e.classList.add("hidden");
           }
-        }
         popup.show("queryresult");   
     }
 
