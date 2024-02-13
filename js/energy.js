@@ -427,18 +427,17 @@
       style: style
     });
 
-
     var intervalsPress = [970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998,
       1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028];
     var isobars = rastertools.isolines(pressData, geoTransform, intervalsPress);
 
     var isobarsLayer = L.geoJSON(isobars, {
-		    style: {
+	style: {
           "color": "#333",
           "weight": 2,
           "opacity": 0.65
         }
-	 });
+    });
 
    //Creating the color scale https://github.com/santilland/plotty/blob/master/src/plotty.js
    var cs_def = {positions:[0.0,0.030303030303,0.0606060606061,0.0909090909091,0.121212121212,0.151515151515,0.181818181818,0.212121212121,0.242424242424,0.272727272727,0.30303030303,0.333333333333,0.363636363636,0.393939393939,0.424242424242,0.454545454545,0.484848484848,0.515151515152,0.545454545455,0.575757575758,0.606060606061,0.636363636364,0.666666666667,0.69696969697,0.727272727273,0.757575757576,0.787878787879,0.818181818182,0.848484848485,0.878787878788,0.909090909091,0.939393939394,0.969696969697,1.0],
@@ -527,12 +526,15 @@
      opacity: 0.5
    });
 
+	    /*
    L.control.layers(null, {
     "Wind speed": bandsWindLayer,
     "Pressure": isobarsLayer,
     "Image": imageLayer
     }).addTo(map);
-
+*/
+   layerControl.addOverlay(bandsWindLayer, "Wind speed");
+	
 
   map.on('click', function(e) {
     var xTiff = (e.latlng.lng - geoTransform[0])/geoTransform[1];
