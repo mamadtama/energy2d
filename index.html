@@ -126,6 +126,78 @@
     var Gov = new L.GeoJSON.AJAX('./data/Government.geojson', {style: GovStyle}).addTo(map); 
     var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson', {style: ComStyle}).addTo(map);        
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map); 
+    var gui = {};
+    
+    gui.clean = function () {
+        gui.popup.hide();
+        gui.popupforecast.hide();
+        if (gui.layerPanel.initialized) gui.layerPanel.hide();
+      };
+    
+    gui.popup = {
+        modal: false,
+        content: null,
+        timerId: null,
+        isVisible: function () {
+          return E("popup").classList.contains(VIS);
+        },
+        show: function (obj, title, modal, duration) {
+
+          if (modal) app.pause();
+          else if (this.modal) app.resume();
+    
+          this.content = obj;
+          this.modal = Boolean(modal);
+    
+          var e = E("layerpanel");
+          if (e) e.classList.remove(VIS);
+    
+          var content = E("popupcontent");
+          [content, E("queryresult"), E("pageinfo")].forEach(function (e) {
+            if (e) e.classList.remove(VIS);
+          });
+    
+          if (obj == "queryresult" || obj == "pageinfo") {
+            E(obj).classList.add(VIS);
+          }
+          else {
+            if (obj instanceof HTMLElement) {
+              content.innerHTML = "";
+              content.appendChild(obj);
+            }
+            else {
+              content.innerHTML = obj;
+            }
+            content.classList.add(VIS);
+          }
+          E("popupbar").innerHTML = title || "";
+          E("popup").classList.add(VIS);
+    
+          if (this.timerId !== null) {
+            clearTimeout(this.timerId);
+            this.timerId = null;
+          }
+    
+          if (duration) {
+            this.timerId = setTimeout(function () {
+              gui.popup.hide();
+            }, duration);
+          }
+        },
+    
+        hide: function () {
+          E("popup").classList.remove(VIS);
+          if (this.timerId !== null) clearTimeout(this.timerId);
+          this.timerId = null;
+          this.content = null;
+          if (this.modal) app.resume();
+        }
+    };
+      
+    showQueryResult = function (lat,lng,x,y,id) {
+        var e = E("qr_layername");
+        
+    }
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle, onEachFeature: function (feature, layer) {
         layer.on('mouseover', function () {
@@ -141,9 +213,9 @@
         }); 
         layer.on('click', function () {
           // Let's say you've got a property called url in your geojsonfeature:
-            console.log(lat,lng,feature.properties);
+            console.log(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);
           //window.location = feature.properties.url;
-          //showQueryResult(lanlot, layer, featureIdx, o, conf.coord.visible);  
+          //showQueryResult(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);  
         });
       }}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
