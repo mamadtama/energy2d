@@ -102,11 +102,12 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var lanlot = map.on('click', function(e) {
+    var lanlot = function getcoord(){
+        map.on('click', function(e) {
       //console.log(e.latlng.lat,e.latlng.lng);
-      return e.latlng.lat,e.latlng.lng;
-    });
-    console.log(lanlot);
+        });
+        return {e.latlng.lat,e.latlng.lng};
+    }();
 
     var E = function (id) {
       return document.getElementById(id);
