@@ -116,9 +116,9 @@
 </body>
 <script src="./js/energy.js"></script> 
     <script>
-    var xhr = new XMLHttpRequest();
 
-xhr.open('data/demand_plot2.tif', true);
+var xhr = new XMLHttpRequest();
+xhr.open('GET','data/demand_plot2.tif', true);
 xhr.responseType = 'arraybuffer';
 xhr.onload = function(e) {
     var tiff = GeoTIFF.parse(this.response);
