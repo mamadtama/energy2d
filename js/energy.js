@@ -15,10 +15,10 @@
         //console.log(e.latlng);  //So you can see if it's working
         lat = e.latlng.lat;
         lng = e.latlng.lng;
-        /*
+        
         if (theMarker != undefined) {
               map.removeLayer(theMarker);
-        }; */
+        }; 
         //Add a marker to show where you clicked.
          theMarker = L.marker([lat,lng], {icon: myIcon}).addTo(map); 
     });
