@@ -397,7 +397,7 @@
         //map.fitBounds(isohyet.getBounds());
         //console.log('tes');
         
-        layerControl.addOverlay(bandsWindLayer, "Energy Demand");
+        //layerControl.addOverlay(bandsWindLayer, "Energy Demand");
 
         L.control.layers(null, {
             "Energy Demand": bandsWindLayer
