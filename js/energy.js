@@ -16,7 +16,7 @@
               map.removeLayer(theMarker);
         };
         //Add a marker to show where you clicked.
-         theMarker = L.marker([lat,lon]).addTo(map); 
+         theMarker = L.marker([lat,lng]).addTo(map); 
     });
 
     /*
