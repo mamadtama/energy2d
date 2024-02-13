@@ -330,7 +330,7 @@
     layerControl.addOverlay(Park, "Park");
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET','./data/demand_plot2.tif', true);
+    xhr.open('GET','./data/demand_plot3.tif', true);
     console.log(xhr);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
