@@ -233,7 +233,9 @@
         "Google Terain" : baseMapGoogleTerrain,
     };
 
-    var layerControl = L.control.layers(baseMapsControl, grid).addTo(map);
+    var layerControl = L.control.layers(baseMapsControl, grid,{
+            collapsed:false,
+            }).addTo(map);
 
     //L.control.layers(baseMapsControl).addTo(map);
     //L.control.addOverlay(grid, "Grid 200 m");
