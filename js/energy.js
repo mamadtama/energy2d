@@ -406,7 +406,7 @@
 		    return {
 			fillColor: getColor(feature.properties[0].lowerValue),
 			weight: 2,
-			opacity: 1,
+			opacity: 0.2,
 			color: getColor(feature.properties[0].lowerValue),
 			dashArray: '3',
 			fillOpacity: 0.3
