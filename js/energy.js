@@ -69,7 +69,7 @@
       return document.getElementById(id);
     };
 
-/*
+
 
     var GriStyle = {fillColor: '#FFFFFF',"color": "#000000",fillOpacity:0.1,"weight": 1,"opacity": 0.9};
     var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
@@ -85,7 +85,7 @@
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map); 
 
     
-*/
+
 
     
     var gui = {};
@@ -248,7 +248,8 @@
         popup.show("queryresult");   
     }
 
-    var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle, onEachFeature: function (feature, layer) {
+
+	var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle, onEachFeature: function (feature, layer) {
         layer.on('mouseover', function () {
           this.setStyle({
             'fillColor': '#0000ff', 
@@ -319,7 +320,7 @@
         "Google Terain" : baseMapGoogleTerrain,
     };
 
-/*
+
     var layerControl = L.control.layers(baseMapsControl, grid,{
             collapsed:false,
             }).addTo(map);
@@ -332,7 +333,7 @@
     layerControl.addOverlay(Comm, "Commercial Office");
     layerControl.addOverlay(Park, "Park");
 
-*/
+
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './data/demand_plot3.tif', true);
     xhr.responseType = 'arraybuffer';
