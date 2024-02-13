@@ -50,6 +50,21 @@
     console.log(retrieved_data);
     */
 
+    var demand = {
+        showResult: function () {
+            console.log('show modal of forecast');
+            /*
+            var html = '<table class="forecast">';
+            html += "<tr><td>Total distance:</td><td>" + " m</td><td></td></tr>";
+            html += "<tr><td>Horizontal distance:</td><td>" + " m</td><td></td></tr>";
+            html += "<tr><td>Vertical difference:</td><td>" + ' m</td><td><span class="tooltip tooltip-btn" data-tooltip="elevation difference between start point and end point">?</span></td></tr>';
+            html += "</table>";
+                */
+            var html = '';
+            popupdemand.show(html, "Energy demand (forecast) ");
+      } 
+    }
+
     var E = function (id) {
       return document.getElementById(id);
     };
@@ -87,6 +102,26 @@
           //cleanView();
         }
     }
+
+    popupdemand = {
+        modal: false,
+        content: null,
+        timerId: null,
+        isVisible: function () {
+          return E("popupdemand").classList.contains(VIS);
+        },
+        show: function (obj, title, modal, duration) {
+          E("popupdemand").classList.add(VIS);
+        },
+        hide: function () {
+          console.log('forecast hidden');
+          E("popupdemand").classList.remove(VIS);
+          if (this.timerId !== null) clearTimeout(this.timerId);
+          this.timerId = null;
+          this.content = null;
+          if (this.modal) app.resume();
+        }
+    };
     
     popup = {
         modal: false,
@@ -159,6 +194,13 @@
     ON_CLICK("zoomtolayer", function () {
       cameraAction.zoom();
     });
+    ON_CLICK("powergenbtn", function () {
+      powergen.showResult();
+      console.log('powergenbtn!');
+    });
+
+    
+
       
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
