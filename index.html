@@ -108,6 +108,10 @@
     })();
     console.log(lanlot);
 
+    var E = function (id) {
+      return document.getElementById(id);
+    };
+
     var GriStyle = {fillColor: '#FFFFFF',"color": "#000000",fillOpacity:0.1,"weight": 1,"opacity": 0.9};
     var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var FacStyle = {fillColor: '#AC6F5A',"color": "#AC6F5A",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
@@ -135,7 +139,9 @@
         }); 
         layer.on('click', function () {
           // Let's say you've got a property called url in your geojsonfeature:
-          window.location = feature.properties.url;
+            console.log(lanlot,layer);
+          //window.location = feature.properties.url;
+          //showQueryResult(lanlot, layer, featureIdx, o, conf.coord.visible);  
         });
       }}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
