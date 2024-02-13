@@ -487,8 +487,6 @@
      for(var i = 0; i<width; i++){
        var pointCoordsX = geoTransform[0] + i*tiffWidth*geoTransform[1]/width;
        var pointCoordsY = geoTransform[3] + j*tiffHeight*geoTransform[5]/height;
-
-
        var px = invGeoTransform[0] + pointCoordsX * invGeoTransform[1];
        var py = invGeoTransform[3] + pointCoordsY * invGeoTransform[5];
 
@@ -550,7 +548,7 @@
 
     L.popup()
       .setLatLng(e.latlng)
-      .setContent("Wind speed: " + spd.toFixed(1) + " kt <br/>Wind dir: " + dir.toFixed(0) +"º <br/>Temp: " + temp.toFixed(1) + " C<br/>Pressure: " + press.toFixed(0) + " hPa")
+      .setContent("Wind speed: " + spd )
       .openOn(map);
   });
   };
