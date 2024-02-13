@@ -391,7 +391,7 @@
         var bandsWindLayer = L.geoJson(bandsWind, {
             style: style,
             onEachFeature: onEachFeatureIso,
-        })//.addTo(map);
+        }).addTo(map);
         //var isohyet = new L.featureGroup();
         //isohyet.addLayer(bandsWindLayer)
         //map.fitBounds(isohyet.getBounds());
@@ -399,10 +399,11 @@
         
         //layerControl.addOverlay(bandsWindLayer, "Energy Demand");
 
-        L.control.layers(null, {
-            "Energy Demand": bandsWindLayer
-            }).addTo(map);
+        //L.control.layers(null, {
+        //    "Energy Demand": bandsWindLayer
+        //    }).addTo(map);
     };
+
 
 
 
