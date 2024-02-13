@@ -453,7 +453,7 @@
              "#ffe978", "#ffc13c", "#ffa100", "#ff6000", "#ff3200", "#e11400", "#c10000", "#a50000",
              "#643c32", "#785046", "#8d645a"]};
    
-/*	    
+	    
    var scaleWidth = 256;
    var canvasColorScale = document.createElement('canvas');
     canvasColorScale.width = scaleWidth;
@@ -531,7 +531,7 @@
 
    var imageLayer = L.imageOverlay(canvasRaster.toDataURL(), imageBounds,{
      opacity: 0.5
-   }); */
+   }); 
 
    layerControl.addOverlay(bandsWindLayer, "Energy demand");
 
