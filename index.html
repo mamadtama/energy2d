@@ -102,7 +102,7 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    marker.on('click', function(ev){
+    L.marker.on('click', function(ev){
       var latlng = map.mouseEventToLatLng(ev.originalEvent);
       console.log(latlng.lat + ', ' + latlng.lng);
     });
