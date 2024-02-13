@@ -8,7 +8,9 @@
     var lat;
     var lng;   
     var theMarker = {};
-    var myIcon = L.divIcon({className: 'my-div-icon'});
+    var myIcon = L.divIcon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0-beta.0/images/marker-icon.png'
+    });
     map.on('click', function(e) {
         //console.log(e.latlng);  //So you can see if it's working
         lat = e.latlng.lat;
