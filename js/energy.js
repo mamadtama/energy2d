@@ -372,7 +372,7 @@
     //var intervalsPress = [970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998,
     //  1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028];
 	    
-    var bandsWind = rastertools.isobands(pressData, geoTransform, intervalsPress);
+    var bandsWind = rastertools.isobands(spdData, geoTransform, intervalsPress);
 
     function getColor(d) {
     return d > 92   ? '#643c32' :
