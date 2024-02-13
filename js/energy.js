@@ -333,7 +333,7 @@
     xhr.open('GET','demand_plot3.tif', true);
     console.log(xhr);
     var xhr = new XMLHttpRequest();
-    xhr.open('GET','vardah.tiff', true);
+    xhr.open('vardah.tiff', true);
     console.log(xhr);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
