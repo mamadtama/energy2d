@@ -60,6 +60,13 @@
         gui.popupforecast.hide();
         if (gui.layerPanel.initialized) gui.layerPanel.hide();
       };
+
+    var cameraAction = {
+        zoom: function () {
+          map.panTo(new L.LatLng(lat, lng));
+          //cleanView();
+        }
+    }
     
     popup = {
         modal: false,
@@ -126,6 +133,9 @@
 
     // popup
     ON_CLICK("closebtn", cleanView);
+    ON_CLICK("zoomtopoint", function () {
+      cameraAction.zoom();
+    });
       
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
