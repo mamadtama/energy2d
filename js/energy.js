@@ -13,6 +13,28 @@
         lng = e.latlng.lng;
     });
 
+    var retrieved_data = function getdata(){
+        var tmp=null;
+        $.ajax({
+          url: "data/grid_area.json",           
+            type: 'GET',
+        dataType: 'jsonp',
+        CORS: true ,
+        contentType:'application/json',
+        secure: true,
+        headers: {
+        'Access-Control-Allow-Origin': '*',
+        },
+        beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "Basic " + btoa(""));
+        },
+            success: function (data) {
+              tmp=data;
+            }
+          })
+        return tmp;
+      }();
+
     var E = function (id) {
       return document.getElementById(id);
     };
@@ -104,7 +126,6 @@
 
     var cleanView = function () {
         popup.hide();
-        if (gui.layerPanel.initialized) gui.layerPanel.hide();
       };
 
     // popup
@@ -112,6 +133,14 @@
       
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
+        var da = retrieved_data[id];
+        if (layer && e) e.innerHTML = 'House: '+(da["House_PCT"]*100).toFixed(2).toString()
+                    +' % <br> Factory :'+(da["Factory__1"]*100).toFixed(2).toString()                      
+                                +' % <br> Gov. Building :'+(da["Govern_PCT"]*100).toFixed(2).toString()
+                                +' % <br> Comm. Building :'+(da["Commerc_PC"]*100).toFixed(2).toString()
+                    +' % <br> Park :'+(da["Park_PCT"]*100).toFixed(2).toString()                            
+                    +' %';   
+        
         e = E("qr_coords_table");
         if (e) {
           if (lng) {
