@@ -23,6 +23,15 @@
          theMarker = L.marker([lat,lng], {icon: myIcon}).addTo(map); 
     });
 
+    document.body.addEventListener('keydown', function(e) {
+      if (e.key == "Escape") {
+          if (theMarker){
+              map.removeLayer(theMarker);
+          }
+      }
+    });
+
+
     /*
     var retrieved_data = function getdata(){
         var tmp=null;
