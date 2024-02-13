@@ -18,22 +18,15 @@
         $.ajax({
           url: "data/grid_area.json",           
             type: 'GET',
-        dataType: 'jsonp',
-        CORS: true ,
-        contentType:'application/json',
-        secure: true,
-        headers: {
-        'Access-Control-Allow-Origin': '*',
-        },
-        beforeSend: function (xhr) {
-        xhr.setRequestHeader ("Authorization", "Basic " + btoa(""));
-        },
+            dataType: 'jsonp',
             success: function (data) {
               tmp=data;
             }
           })
         return tmp;
       }();
+
+    console.log(retrieved_data);
     
 
     var E = function (id) {
