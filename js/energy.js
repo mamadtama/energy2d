@@ -15,8 +15,8 @@
 
     var retrieved_data = function getdata(){
         var tmp=null;
-        $.ajax({
-          url: "../data/grid_area.json",           
+        $.ajax({ 
+          url: "data/grid_area.json",           
             type: 'GET',
             dataType: 'json',
             success: function (data) {
