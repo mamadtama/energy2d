@@ -374,11 +374,11 @@
 	    var bandsWind = rastertools.isobands(spdData, geoTransform, intervalsPress);
 	
 	    function getColor(d) {
-	    return d > 92   ? '#643c32' :
-	           d > 88   ? '#643c32' :
-	           d > 84   ? '#a50000' :
-	           d > 80   ? '#c10000' :
-	           d > 76   ? '#e11400' :
+	    return d > 200   ? '#643c32' :
+	           d > 150   ? '#643c32' :
+	           d > 120   ? '#a50000' :
+	           d > 90   ? '#c10000' :
+	           d > 80   ? '#e11400' :
 	           d > 72   ? '#ff3200' :
 	           d > 68   ? '#ff6000' :
 	           d > 64   ? '#ffa100' :
@@ -425,7 +425,7 @@
 	    });
 	
 	    function onEachFeatureIso(feature, layer) {
-		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' mm', {
+		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' kWh', {
 		        direction: 'right',
 		        className: 'countryLabel',
 		        sticky: true
