@@ -64,7 +64,7 @@
     var cameraAction = {
         zoom: function () {
           map.panTo(new L.LatLng(lat, lng));
-          map.flyTo([lat, lng],13);  
+          map.flyTo([lat, lng],20);  
           //cleanView();
         }
     }
