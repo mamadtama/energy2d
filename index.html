@@ -21,7 +21,7 @@
      </style>
 </head>
 
-<body class="sidebar-mini sidebar-collapse layout-fixed">
+<body onclick="showCoords(event)" class="sidebar-mini sidebar-collapse layout-fixed">
 <div class="content-wrapper" id="map">
     <div style="position: absolute;left: 1em;z-index: 999;display: block;top:2em;">
         <div class="d-flex">
@@ -102,13 +102,12 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    function printMousePos(event) {
-          document.body.textContent =
-            "clientX: " + event.clientX +
-            " - clientY: " + event.clientY;
-        }
-        
-    document.addEventListener("click", printMousePos);
+    function showCoords(event) {
+      let x = event.clientX;
+      let y = event.clientY;
+      let text = "X coords: " + x + ", Y coords: " + y;
+      console.log("X coords: " + x + ", Y coords: " + y);
+    }
 
     var GriStyle = {fillColor: '#FFFFFF',"color": "#000000",fillOpacity:0.1,"weight": 1,"opacity": 0.9};
     var HouStyle = {fillColor: '#AD9B58',"color": "#AD9B58",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
