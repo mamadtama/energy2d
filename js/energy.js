@@ -8,6 +8,7 @@
     var lat;
     var lng;   
     var theMarker = {};
+    var myIcon = L.divIcon({className: 'my-div-icon'});
     map.on('click', function(e) {
         //console.log(e.latlng);  //So you can see if it's working
         lat = e.latlng.lat;
@@ -16,7 +17,7 @@
               map.removeLayer(theMarker);
         };
         //Add a marker to show where you clicked.
-         theMarker = L.marker([lat,lng]).addTo(map); 
+         theMarker = L.marker([lat,lng], {icon: myIcon}).addTo(map); 
     });
 
     /*
