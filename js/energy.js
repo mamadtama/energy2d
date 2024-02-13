@@ -330,11 +330,12 @@
     layerControl.addOverlay(Park, "Park");
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET','./data/demand_plot3.tif', true);
+    xhr.open('GET','demand_plot3.tif', true);
+    console.log(xhr);
+    xhr.open('GET','vardah.tiff', true);
     console.log(xhr);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function(e) {
-        
         var tiff = GeoTIFF.parse(this.response);
         var image = tiff.getImage();
         var tiffWidth = image.getWidth();
