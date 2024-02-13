@@ -34,6 +34,7 @@
           })
         return tmp;
       }();
+    
 
     var E = function (id) {
       return document.getElementById(id);
@@ -133,6 +134,7 @@
       
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
+        console.log(retrieved_data);
         var da = retrieved_data[id];
         if (layer && e) e.innerHTML = 'House: '+(da["House_PCT"]*100).toFixed(2).toString()
                     +' % <br> Factory :'+(da["Factory__1"]*100).toFixed(2).toString()                      
