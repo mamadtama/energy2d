@@ -102,18 +102,10 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    /*
-    var lanlot = function getcoord(){
-        map.on('click', function(e) {
-          //console.log(e.latlng.lat,e.latlng.lng);
-        });
-        return {e.latlng.lat,e.latlng.lng};
-    }(); */
-
     var lat;
     var lng;   
     map.on('click', function(e) {
-        console.log(e.latlng);  //So you can see if it's working
+        //console.log(e.latlng);  //So you can see if it's working
         lat = e.latlng.lat;
         lng = e.latlng.lng;
     });
@@ -149,7 +141,7 @@
         }); 
         layer.on('click', function () {
           // Let's say you've got a property called url in your geojsonfeature:
-            console.log(lat,lng,layer);
+            console.log(lat,lng,feature.properties);
           //window.location = feature.properties.url;
           //showQueryResult(lanlot, layer, featureIdx, o, conf.coord.visible);  
         });
