@@ -29,6 +29,7 @@
     var Gov = new L.GeoJSON.AJAX('./data/Government.geojson', {style: GovStyle}).addTo(map); 
     var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson', {style: ComStyle}).addTo(map);        
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map); 
+    
     var gui = {};
     
     gui.clean = function () {
@@ -37,7 +38,7 @@
         if (gui.layerPanel.initialized) gui.layerPanel.hide();
       };
     
-    gui.popup = {
+    popup = {
         modal: false,
         content: null,
         timerId: null,
@@ -99,7 +100,29 @@
       
     showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
-        
+        e = E("qr_coords_table");
+        if (e) {
+          if (lng) {
+            e.classList.remove("hidden");
+            var pt = app.scene.toMapCoordinates(point);
+            e = E("qr_coords");
+            e.innerHTML = [new_xy[0].toFixed(3), new_xy[1].toFixed(3), pt.z.toFixed(0)].join(", ");
+          }
+          else {
+            e.classList.add("hidden");
+          }
+        }
+    
+        e = E("qr_attrs_table");
+        if (e) {
+          for (var i = e.children.length - 1; i >= 0; i--) {
+            if (e.children[i].tagName.toUpperCase() == "TR") e.removeChild(e.children[i]);
+          }
+          else {
+            e.classList.add("hidden");
+          }
+        }
+        popup.show("queryresult");   
     }
 
     var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle, onEachFeature: function (feature, layer) {
@@ -165,12 +188,12 @@
 
 
     var baseMapsControl = {
-    "Open Street Map": baseMapStreet,
-    "Open Street Map Outdoor": baseMapOutdoor,
-    "Google Street" : baseMapGoogleStreet,
-    "Google Hybrid" : baseMapGoogleHybrid,
-    "Google Satelite" : baseMapGoogleSat,
-    "Google Terain" : baseMapGoogleTerrain,
+        "Open Street Map": baseMapStreet,
+        "Open Street Map Outdoor": baseMapOutdoor,
+        "Google Street" : baseMapGoogleStreet,
+        "Google Hybrid" : baseMapGoogleHybrid,
+        "Google Satelite" : baseMapGoogleSat,
+        "Google Terain" : baseMapGoogleTerrain,
     };
 
     var layerControl = L.control.layers(baseMapsControl, grid).addTo(map);
