@@ -414,7 +414,7 @@
 	    });
 	
 	    function onEachFeatureIso(feature, layer) {
-		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' x 10 kWh', {
+		    layer.bindTooltip(parseFloat(feature.properties[0].lowerValue + 1) + ' - ' + feature.properties[0].upperValue + ' kWh', {
 		        direction: 'right',
 		        className: 'countryLabel',
 		        sticky: true
