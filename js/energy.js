@@ -182,12 +182,17 @@
         }
     };
 
+    var cleanView_f = function () {
+        popupdemand.hide();
+      };
+    
     var cleanView = function () {
         popup.hide();
       };
 
     // popup
     ON_CLICK("closebtn", cleanView);
+    ON_CLICK("closebtn_f", cleanView_f);
     ON_CLICK("zoomtopoint", function () {
       cameraAction.zoom();
     });
