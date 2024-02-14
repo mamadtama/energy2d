@@ -101,9 +101,12 @@ var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
 		},
 		onEachFeature
 	}).addTo(map); */
+    var PhtIcon = L.icon({iconUrl: './img/photovoltaics.png'});
+    var TrbIcon = L.icon({iconUrl: './img/turbine.png'});
+    var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {icon: PhtIcon}).addTo(map);
+    var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {icon: TrbIcon}).addTo(map);
 
-    var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson').addTo(map);
-
+/*	
     var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {
 		pointToLayer(feature, latlng) {
 			return L.marker(latlng, {icon: './img/turbine.png'});
@@ -111,7 +114,7 @@ var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
 		onEachFeature
 	}).addTo(map);
 
-    
+ */   
 
 
     
