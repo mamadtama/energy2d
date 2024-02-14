@@ -96,14 +96,14 @@
 
 		layer.bindPopup(popupContent);
 	}
-    var Photovoltaic = L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
+    var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
 		pointToLayer(feature, latlng) {
 			return L.marker(latlng, {icon: './img/photovoltaics.png'});
 		},
 		onEachFeature
 	}).addTo(map);
 
-    var Turbine = L.GeoJSON.AJAX('./data/wind_turbine.geojson', {
+    var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {
 		pointToLayer(feature, latlng) {
 			return L.marker(latlng, {icon: './img/turbine.png'});
 		},
