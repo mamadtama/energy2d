@@ -495,7 +495,7 @@ var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
         },
         yAxis: {
             title: {
-                text: 'Exchange rate'
+                text: 'Energy demand (kWh)'
             }
         },
         legend: {
@@ -530,7 +530,7 @@ var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
 
         series: [{
             type: 'area',
-            name: 'USD to EUR',
+            name: 'Energy demand',
             data: data
         }]
     });
