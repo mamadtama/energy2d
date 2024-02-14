@@ -85,8 +85,30 @@
     var Gov = new L.GeoJSON.AJAX('./data/Government.geojson', {style: GovStyle}).addTo(map); 
     var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson', {style: ComStyle}).addTo(map);        
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map);     
-    var Photovoltaic = L.GeoJSON.AJAX('./data/photovoltaic.geojson', PhtStyle);
-    var Turbine = L.GeoJSON.AJAX('./data/wind_turbine.geojson', TrbStyle);
+    //var Photovoltaic = L.GeoJSON.AJAX('./data/photovoltaic.geojson', {style: PhtStyle}).addTo(map);
+    //var Turbine = L.GeoJSON.AJAX('./data/wind_turbine.geojson', {style:TrbStyle}).addTo(map);
+
+    function onEachFeature(feature, layer) {
+		let popupContent = '';
+		if (feature.properties && feature.properties.popupContent) {
+			popupContent += feature.properties.popupContent;
+		}
+
+		layer.bindPopup(popupContent);
+	}
+    var Photovoltaic = L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
+		pointToLayer(feature, latlng) {
+			return L.marker(latlng, {icon: './img/photovoltaics.png'});
+		},
+		onEachFeature
+	}).addTo(map);
+
+    var Turbine = L.GeoJSON.AJAX('./data/wind_turbine.geojson', {
+		pointToLayer(feature, latlng) {
+			return L.marker(latlng, {icon: './img/turbine.png'});
+		},
+		onEachFeature
+	}).addTo(map);
 
     
 
