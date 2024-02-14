@@ -85,8 +85,8 @@
     var Gov = new L.GeoJSON.AJAX('./data/Government.geojson', {style: GovStyle}).addTo(map); 
     var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson', {style: ComStyle}).addTo(map);        
     var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map);     
-    var Photovoltaic = L.geoJSON.AJAX('./data/photovoltaic.geojson', PhtStyle);
-    var Turbine = L.geoJSON.AJAX('./data/wind_turbine.geojson', TrbStyle);
+    var Photovoltaic = L.GeoJSON.AJAX('./data/photovoltaic.geojson', PhtStyle);
+    var Turbine = L.GeoJSON.AJAX('./data/wind_turbine.geojson', TrbStyle);
 
     
 
