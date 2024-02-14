@@ -77,8 +77,9 @@
     var GovStyle = {fillColor: '#0058AC',"color": "#0058AC",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var ComStyle = {fillColor: '#6C61A6',"color": "#6C61A6",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var ParStyle = {fillColor: '#018120',"color": "#018120",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
-    var PhtStyle = {pointToLayer: (feature, latLng) => L.marker(latLng, { icon: './img/photovoltaics.png' })};
-    var TrbStyle = {pointToLayer: (feature, latLng) => L.marker(latLng, { icon: './img/turbine.png' })}
+
+//  var PhtStyle = {pointToLayer: (feature, latLng) => L.marker(latLng, { icon: './img/photovoltaics.png' })};
+    //var TrbStyle = {pointToLayer: (feature, latLng) => L.marker(latLng, { icon: './img/turbine.png' })}
 
     var House = new L.GeoJSON.AJAX('./data/House.geojson', {style: HouStyle}).addTo(map);       
     var Factory = new L.GeoJSON.AJAX('./data/Factory.geojson', {style: FacStyle}).addTo(map);       
@@ -94,35 +95,21 @@
 
 		layer.bindPopup(popupContent);
 	}
-/*    
-var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {
-		pointToLayer(feature, latlng) {
-			return L.marker(latlng, {icon: './img/photovoltaics.png'});
-		},
-		onEachFeature
-	}).addTo(map); */
-    var PhtIcon = L.icon({iconUrl: './img/photovoltaics.png',iconSize: [35, 35]});
-    var TrbIcon = L.icon({iconUrl: './img/turbine.png'});
+
+    var PhtIcon = L.icon({iconUrl: './img/photovoltaics.png',iconSize: [45, 45]});
+    var TrbIcon = L.icon({iconUrl: './img/turbine.png',iconSize: [45, 45]});
     //var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {icon: PhtIcon}).addTo(map);
-    var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {icon: TrbIcon}).addTo(map);
+    //var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {icon: TrbIcon}).addTo(map);
 
     var Photovoltaic = new  L.GeoJSON.AJAX('./data/photovoltaic.geojson',
 			{pointToLayer: function(feature,latlng)
 			{return L.marker(latlng,{icon: PhtIcon});
 			}}).addTo(map);
-	
 
-/*	
-    var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {
-		pointToLayer(feature, latlng) {
-			return L.marker(latlng, {icon: './img/turbine.png'});
-		},
-		onEachFeature
-	}).addTo(map);
-
- */   
-
-
+    var Turbine = new  L.GeoJSON.AJAX('./data/wind_turbine.geojson',
+			{pointToLayer: function(feature,latlng)
+			{return L.marker(latlng,{icon: TrbIcon});
+			}}).addTo(map);
     
     var gui = {};
     var VIS = "visible";
