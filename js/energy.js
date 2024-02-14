@@ -77,12 +77,16 @@
     var GovStyle = {fillColor: '#0058AC',"color": "#0058AC",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var ComStyle = {fillColor: '#6C61A6',"color": "#6C61A6",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
     var ParStyle = {fillColor: '#018120',"color": "#018120",fillOpacity:0.9,"weight": 0,"opacity": 0.9};
+    var PhtStyle = {pointToLayer: (feature, latLng) => L.marker(latLng, { icon: './img/photovoltaics.png' })};
+    var TrbStyle = {pointToLayer: (feature, latLng) => L.marker(latLng, { icon: './img/turbine.png' })}
 
     var House = new L.GeoJSON.AJAX('./data/House.geojson', {style: HouStyle}).addTo(map);       
     var Factory = new L.GeoJSON.AJAX('./data/Factory.geojson', {style: FacStyle}).addTo(map);       
     var Gov = new L.GeoJSON.AJAX('./data/Government.geojson', {style: GovStyle}).addTo(map); 
     var Comm = new L.GeoJSON.AJAX('./data/Commercial.geojson', {style: ComStyle}).addTo(map);        
-    var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map); 
+    var Park = new L.GeoJSON.AJAX('./data/Park.geojson', {style: ParStyle}).addTo(map);     
+    var Photovoltaic = L.geoJSON.AJAX('./data/photovoltaic.geojson', PhtStyle);
+    var Turbine = L.geoJSON.AJAX('./data/wind_turbine.geojson', TrbStyle);
 
     
 
@@ -332,6 +336,8 @@
     layerControl.addOverlay(Gov, "Government Building");
     layerControl.addOverlay(Comm, "Commercial Office");
     layerControl.addOverlay(Park, "Park");
+    layerControl.addOverlay(Photovoltaic, "Photovoltaics");
+    layerControl.addOverlay(Turbine, "Wind Turbine");
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './data/energy_demand.tif', true);
