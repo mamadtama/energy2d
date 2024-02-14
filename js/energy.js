@@ -96,8 +96,8 @@
 		layer.bindPopup(popupContent);
 	}
 
-    var PhtIcon = L.icon({iconUrl: './img/photovoltaics.png',iconSize: [45, 45]});
-    var TrbIcon = L.icon({iconUrl: './img/turbine.png',iconSize: [45, 45]});
+    var PhtIcon = L.icon({iconUrl: './img/photovoltaics.png',iconSize: [55, 55]});
+    var TrbIcon = L.icon({iconUrl: './img/turbine.png',iconSize: [65, 65]});
     //var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {icon: PhtIcon}).addTo(map);
     //var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {icon: TrbIcon}).addTo(map);
 
