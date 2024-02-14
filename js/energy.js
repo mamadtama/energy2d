@@ -98,6 +98,7 @@
 
     var PhtIcon = L.icon({iconUrl: './img/photovoltaics.png',iconSize: [55, 55]});
     var TrbIcon = L.icon({iconUrl: './img/turbine.png',iconSize: [65, 65]});
+    var StrIcon = L.icon({iconUrl: './img/storage.png',iconSize: [55, 55]});
     //var Photovoltaic = new L.GeoJSON.AJAX('./data/photovoltaic.geojson', {icon: PhtIcon}).addTo(map);
     //var Turbine = new L.GeoJSON.AJAX('./data/wind_turbine.geojson', {icon: TrbIcon}).addTo(map);
 
@@ -109,6 +110,11 @@
     var Turbine = new  L.GeoJSON.AJAX('./data/wind_turbine.geojson',
 			{pointToLayer: function(feature,latlng)
 			{return L.marker(latlng,{icon: TrbIcon});
+			}}).addTo(map);
+
+    var Storage = new  L.GeoJSON.AJAX('./data/storage.geojson',
+			{pointToLayer: function(feature,latlng)
+			{return L.marker(latlng,{icon: StrIcon});
 			}}).addTo(map);
     
     var gui = {};
@@ -357,6 +363,7 @@
     layerControl.addOverlay(Park, "Park");
     layerControl.addOverlay(Photovoltaic, "Photovoltaics");
     layerControl.addOverlay(Turbine, "Wind Turbine");
+    layerControl.addOverlay(Storage, "Storage"); 
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './data/energy_demand.tif', true);
