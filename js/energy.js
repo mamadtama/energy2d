@@ -732,8 +732,8 @@ $(document).ready(function() {
         }]
     });
 })();
-
 */
+
 var retrieved_data = [
   {
     "wkt_geom": "MultiPolygon (((190105 179091, 190105 178891, 189905 178891, 189905 179091, 190105 179091)))",
