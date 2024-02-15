@@ -237,6 +237,7 @@
       
     var showQueryResult = function (lat,lng,x,y,id) {
         var e = E("qr_layername");
+	E("ident").innerHTML = id;    
         console.log(retrieved_data);
         var da = retrieved_data[id-1];
         if (da && e) e.innerHTML = 'House: '+(da["House_PCT"]*100).toFixed(2).toString()
