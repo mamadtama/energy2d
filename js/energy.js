@@ -53,13 +53,6 @@
     var demand = {
         showResult: function () {
             console.log('show modal of forecast');
-            /*
-            var html = '<table class="forecast">';
-            html += "<tr><td>Total distance:</td><td>" + " m</td><td></td></tr>";
-            html += "<tr><td>Horizontal distance:</td><td>" + " m</td><td></td></tr>";
-            html += "<tr><td>Vertical difference:</td><td>" + ' m</td><td><span class="tooltip tooltip-btn" data-tooltip="elevation difference between start point and end point">?</span></td></tr>';
-            html += "</table>";
-                */
             var html = '';
             popupdemand.show(html, "Energy demand (forecast) ");
       } 
@@ -277,7 +270,7 @@
         popup.show("queryresult");   
     }
 
-
+	var id_grid;
 	var grid200m = new L.GeoJSON.AJAX('./data/grid200m_box.geojson', {style: GriStyle, onEachFeature: function (feature, layer) {
         layer.on('mouseover', function () {
           this.setStyle({
@@ -294,7 +287,8 @@
           // Let's say you've got a property called url in your geojsonfeature:
             console.log(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);
           //window.location = feature.properties.url;
-          showQueryResult(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);  
+          showQueryResult(lat,lng,feature.properties.x,feature.properties.y,feature.properties.id);
+	  id_grid = feature.properties.id-1;	
         });
       }}).addTo(map);      
     var grid = {"Grid 200m": grid200m};    
@@ -472,200 +466,202 @@
 
 //------------------------------------- Graphic --------------------------------------------------
 
-var bln = [];
-//var demand = [];
-var x = [];
-var go = [];
-var ho = [];
-var fa = [];
-var pa = [];
-var co = [];
-$.ajax({
-    method: "GET",
-    dataType: "json",
-    url: "./data/total_demand.json",
-    success: function( data ) {
-	console.log(data);
-	var result=data.filter(obj=> obj.id_grid == "308");
-	var i = 0;
-	result.forEach(function(data1) {
-	    date = data1.month;
-	    Gov = data1['Govermment'];
-	    Hou = data1['House'];
-	    Fac = data1['Factory'];
-	    par = data1['Park'];
-	    com = data1['Commercial Office'];
-	    x.push([date]);
-	    go.push([Gov]);
-	    ho.push([Hou]);
-	    fa.push([Fac]);
-	    pa.push([par]);
-	    co.push([com]);    
-	    })
-	grafik(x,go,ho,fa);  
-    }   
-}); 
-
-function grafik(x1,go,ho,fa,pa,co){
-console.log(go);
-console.log(ho);
-console.log(fa);
-
-$(document).ready(function() {
-	var chart = {
-	type: 'area',
-	zoomType: 'x',
-	backgroundColor: {
-	    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-	    stops: [
-		[0, 'white'],
-		[1, 'white']
-	    ]
-	},
-	borderWidth: 0,
-	borderRadius: 0,
-	plotBackgroundColor: null,
-	plotShadow: false,
-	plotBorderWidth: 0
-	};
-	var title = {
-	text: 'Energy demand (kWh)',
-	style: {
-	    color: 'black',
-	    font: '16px Lucida Grande, Lucida Sans Unicode,' +
-		' Verdana, Arial, Helvetica, sans-serif'
-	}   
-	};
-	var subtitle = {
-	text: '(Cooling and Heating)',
-	style: {
-	    color: 'black',
-	    font: '10px Lucida Grande, Lucida Sans Unicode,' +
-		' Verdana, Arial, Helvetica, sans-serif'
-	}   
-	};
-	var xAxis = {
-	categories: x1,
-	gridLineWidth: 0,
-	lineColor: 'black',
-	tickColor: 'black',
-	labels: {
-	    style: {
-		color: 'black',
-		fontWeight: 'bold'
-	    }
-	},
-	title: {
-	    text: 'Month',
-	    style: {
-		color: 'black',
-		font: 'bold 12px Lucida Grande, Lucida Sans Unicode,' +
-		' Verdana, Arial, Helvetica, sans-serif'
-	    }
-	}
-	};
-	var yAxis = {
-	gridLineWidth: 1,
-	lineColor: 'black',
-	tickColor: 'black',
-	title: {
-	  text: 'Energy demand (kWh)',
-	  style: {
-		color: 'black',
-		font: 'bold 12px Lucida Grande, Lucida Sans Unicode,' +
-		' Verdana, Arial, Helvetica, sans-serif'
-	    }
-	},
-	labels: {
-	  formatter: function () {
-	     return this.value;
-	  },
-	  style: {
-		color: 'black',
-		fontWeight: 'bold'
-	    }
-	},
+function show_graphic() {
+	var bln = [];
+	var x = [];
+	var go = [];
+	var ho = [];
+	var fa = [];
+	var pa = [];
+	var co = [];
+	$.ajax({
+	    method: "GET",
+	    dataType: "json",
+	    url: "./data/total_demand.json",
+	    success: function( data ) {
+		console.log(data);
+		var result=data.filter(obj=> obj.id_grid == id_grid.toString());
+		var i = 0;
+		result.forEach(function(data1) {
+		    date = data1.month;
+		    Gov = data1['Govermment'];
+		    Hou = data1['House'];
+		    Fac = data1['Factory'];
+		    par = data1['Park'];
+		    com = data1['Commercial Office'];
+		    x.push([date]);
+		    go.push([Gov]);
+		    ho.push([Hou]);
+		    fa.push([Fac]);
+		    pa.push([par]);
+		    co.push([com]);    
+		    })
+		grafik(x,go,ho,fa);  
+	    }   
+	}); 
 	
+	function grafik(x1,go,ho,fa,pa,co){
+	console.log(go);
+	console.log(ho);
+	console.log(fa);
 	
-	};
-	
-	var tooltip = {
-	pointFormat: '{series.name} : <b>{point.y:,.0f} kWh</b><br/> on point {point.x}'
-	};
-	var plotOptions = {
-	area: {
-	  //pointStart: 1970,
-	  marker: {
-	     enabled: false,
-	     symbol: 'circle',
-	     radius: 2,
-	     
-	     states: {
-		hover: {
-		   enabled: true
-		}
-	     }
-	  }
-	},
-	series: {
-	  fillOpacity: 0.1,
-	  lineWidth: 1
-	}
-	};
-	var legend = {
-		itemStyle: {
+	$(document).ready(function() {
+		var chart = {
+		type: 'area',
+		zoomType: 'x',
+		backgroundColor: {
+		    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+		    stops: [
+			[0, 'white'],
+			[1, 'white']
+		    ]
+		},
+		borderWidth: 0,
+		borderRadius: 0,
+		plotBackgroundColor: null,
+		plotShadow: false,
+		plotBorderWidth: 0
+		};
+		var title = {
+		text: 'Energy demand (kWh)',
+		style: {
 		    color: 'black',
-		    fontWeight: 'bold'
+		    font: '16px Lucida Grande, Lucida Sans Unicode,' +
+			' Verdana, Arial, Helvetica, sans-serif'
+		}   
+		};
+		var subtitle = {
+		text: '(Cooling and Heating)',
+		style: {
+		    color: 'black',
+		    font: '10px Lucida Grande, Lucida Sans Unicode,' +
+			' Verdana, Arial, Helvetica, sans-serif'
+		}   
+		};
+		var xAxis = {
+		categories: x1,
+		gridLineWidth: 0,
+		lineColor: 'black',
+		tickColor: 'black',
+		labels: {
+		    style: {
+			color: 'black',
+			fontWeight: 'bold'
+		    }
+		},
+		title: {
+		    text: 'Month',
+		    style: {
+			color: 'black',
+			font: 'bold 12px Lucida Grande, Lucida Sans Unicode,' +
+			' Verdana, Arial, Helvetica, sans-serif'
+		    }
 		}
 		};
-		var series = [
-		{
-		  name: 'Government Building',
-		  data: go,
-		  color: '#000EBF',
-		}, 
+		var yAxis = {
+		gridLineWidth: 1,
+		lineColor: 'black',
+		tickColor: 'black',
+		title: {
+		  text: 'Energy demand (kWh)',
+		  style: {
+			color: 'black',
+			font: 'bold 12px Lucida Grande, Lucida Sans Unicode,' +
+			' Verdana, Arial, Helvetica, sans-serif'
+		    }
+		},
+		labels: {
+		  formatter: function () {
+		     return this.value;
+		  },
+		  style: {
+			color: 'black',
+			fontWeight: 'bold'
+		    }
+		},
 		
-		{
-		  name: 'House',
-		  data: ho,
-		  color: '#86913F'
-		}, 
 		
-		{
-		  name: 'Factory',
-		  data: fa,
-		  color: '#AF7C25',
-		  fillOpacity: 0.2,
-		}, 
+		};
 		
-		{
-		  name: 'Park',
-		  data: pa,
-		  color: '#1EA100',
-		  fillOpacity: 0.2,
-		}, 
-		
-		{
-		  name: 'Commercial Office',
-		  data: co,
-		  color: '#6E00A1',
-		  fillOpacity: 0.2,
+		var tooltip = {
+		pointFormat: '{series.name} : <b>{point.y:,.0f} kWh</b><br/> on point {point.x}'
+		};
+		var plotOptions = {
+		area: {
+		  //pointStart: 1970,
+		  marker: {
+		     enabled: false,
+		     symbol: 'circle',
+		     radius: 2,
+		     
+		     states: {
+			hover: {
+			   enabled: true
+			}
+		     }
+		  }
+		},
+		series: {
+		  fillOpacity: 0.1,
+		  lineWidth: 1
 		}
-		];     
-		
-		var json = {};   
-		json.chart = chart; 
-		json.title = title;   
-		json.subtitle = subtitle; 
-		json.tooltip = tooltip;
-		json.xAxis = xAxis;
-		json.yAxis = yAxis;
-		json.legend = legend;  
-		json.series = series;
-		json.plotOptions = plotOptions;
-		$('#containerdemand').highcharts(json);
-	});
+		};
+		var legend = {
+			itemStyle: {
+			    color: 'black',
+			    fontWeight: 'bold'
+			}
+			};
+			var series = [
+			{
+			  name: 'Government Building',
+			  data: go,
+			  color: '#000EBF',
+			}, 
+			
+			{
+			  name: 'House',
+			  data: ho,
+			  color: '#86913F'
+			}, 
+			
+			{
+			  name: 'Factory',
+			  data: fa,
+			  color: '#AF7C25',
+			  fillOpacity: 0.2,
+			}, 
+			
+			{
+			  name: 'Park',
+			  data: pa,
+			  color: '#1EA100',
+			  fillOpacity: 0.2,
+			}, 
+			
+			{
+			  name: 'Commercial Office',
+			  data: co,
+			  color: '#6E00A1',
+			  fillOpacity: 0.2,
+			}
+			];     
+			
+			var json = {};   
+			json.chart = chart; 
+			json.title = title;   
+			json.subtitle = subtitle; 
+			json.tooltip = tooltip;
+			json.xAxis = xAxis;
+			json.yAxis = yAxis;
+			json.legend = legend;  
+			json.series = series;
+			json.plotOptions = plotOptions;
+			$('#containerdemand').highcharts(json);
+		});
+		}
 }
+
 
 /*
 (async () => {
