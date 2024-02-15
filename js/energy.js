@@ -467,6 +467,7 @@
 //------------------------------------- Graphic --------------------------------------------------
 
 function show_graphic() {
+	console.log(id_grid);
 	var bln = [];
 	var x = [];
 	var go = [];
