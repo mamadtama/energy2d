@@ -239,8 +239,8 @@
         var e = E("qr_layername");
 	E("ident").innerHTML = id;  
 	if (E("ident")){
-		show_graphic(id-1);
-		console.log(id-1);
+		show_graphic(id);
+		console.log(id);
 	}
         console.log(retrieved_data);
         var da = retrieved_data[id-1];
