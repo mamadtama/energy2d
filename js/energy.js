@@ -470,7 +470,7 @@
 
 //------------------------------------- Graphic --------------------------------------------------
 
-function show_graphic(id_grid.toString()) {
+function show_graphic(id_grid) {
 	console.log(id_grid);
 	var bln = [];
 	var x = [];
