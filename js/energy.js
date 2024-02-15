@@ -501,7 +501,7 @@ function show_graphic(id_grid) {
 		    pa.push([par]);
 		    co.push([com]);    
 		    })
-		grafik(x,go,ho,fa);  
+		grafik(x,go,ho,fa,pa,co);  
 	    }   
 	}); 
 	
@@ -509,6 +509,8 @@ function show_graphic(id_grid) {
 	console.log(go);
 	console.log(ho);
 	console.log(fa);
+	console.log(pa);
+	console.log(co);	
 	
 	$(document).ready(function() {
 		var chart = {
