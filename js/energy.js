@@ -348,9 +348,10 @@
         "Google Terain" : baseMapGoogleTerrain,
     };
 
-    var grid = {"Grid 200m": grid200m}; 
+//    var grid = {"Grid 200m": grid200m}; 
+    var House1 = {"House", House};
 
-    var layerControl = L.control.layers(baseMapsControl, grid,{
+    var layerControl = L.control.layers(baseMapsControl, House1,{
             collapsed:false,
             }).addTo(map);
 /*
@@ -360,7 +361,7 @@
 */
     //L.control.layers(baseMapsControl).addTo(map);
     
-    layerControl.addOverlay(House, "House");
+    //layerControl.addOverlay(House, "House");
     layerControl.addOverlay(Factory, "Factory");
     layerControl.addOverlay(Gov, "Government Building");
     layerControl.addOverlay(Comm, "Commercial Office");
@@ -368,7 +369,7 @@
     layerControl.addOverlay(Photovoltaic, "Photovoltaics");
     layerControl.addOverlay(Turbine, "Wind Turbine");
     layerControl.addOverlay(Storage, "Storage"); 
-    //layerControl.addOverlay(grid, "Grid 200 m");
+    layerControl.addOverlay(grid200m, "Grid 200 m");
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './data/energy_demand.tif', true);
