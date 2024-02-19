@@ -296,7 +296,7 @@
 	  id_grid = feature.properties.id-1;	
         });
       }}).addTo(map);      
-    var grid = {"Grid 200m": grid200m};    
+       
 
     L.control.scale({
         position : 'bottomright',
@@ -348,7 +348,9 @@
         "Google Terain" : baseMapGoogleTerrain,
     };
 
-
+    //var grid = {"Grid 200m": grid200m}; 
+    var House = {"House": House}; 
+	
     var layerControl = L.control.layers(baseMapsControl, House,{
             collapsed:false,
             }).addTo(map);
