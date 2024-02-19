@@ -349,7 +349,7 @@
     };
 
 
-    var layerControl = L.control.layers(baseMapsControl, grid,{
+    var layerControl = L.control.layers(baseMapsControl, House,{
             collapsed:false,
             }).addTo(map);
 /*
@@ -359,7 +359,7 @@
 */
     //L.control.layers(baseMapsControl).addTo(map);
     
-    layerControl.addOverlay(House, "House");
+    //layerControl.addOverlay(House, "House");
     layerControl.addOverlay(Factory, "Factory");
     layerControl.addOverlay(Gov, "Government Building");
     layerControl.addOverlay(Comm, "Commercial Office");
