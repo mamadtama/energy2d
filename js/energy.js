@@ -348,7 +348,7 @@
         "Google Terain" : baseMapGoogleTerrain,
     };
 
-    //var grid = {"Grid 200m": grid200m}; 
+    var grid = {"Grid 200m": grid200m}; 
     var House = {"House": House}; 
 	
     var layerControl = L.control.layers(baseMapsControl, House,{
