@@ -348,15 +348,15 @@
         "Google Terain" : baseMapGoogleTerrain,
     };
 
-/*
+
     var layerControl = L.control.layers(baseMapsControl, grid,{
             collapsed:false,
             }).addTo(map);
-*/
+/*
     var layerControl = L.control.layers(baseMapsControl, {
             collapsed:false,
             }).addTo(map);
-
+*/
     //L.control.layers(baseMapsControl).addTo(map);
     
     layerControl.addOverlay(House, "House");
