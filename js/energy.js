@@ -349,8 +349,7 @@
     };
 
     var grid = {"Grid 200m": grid200m}; 
-    var House = {"House": House}; 
-	
+
     var layerControl = L.control.layers(baseMapsControl, grid,{
             collapsed:false,
             }).addTo(map);
